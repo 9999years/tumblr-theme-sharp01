@@ -726,52 +726,6 @@ span.delimiter:first-child:before {
 <script>
 let $ = id => document.getElementById(id)
 
-//super condensed version of the like button script
-function post_message(data) {
-	var iframe_count = window.parent.frames.length
-	for (var i = 0; i < iframe_count; i++) {
-		try {
-			if (window.parent.frames[i] !== window) window.parent.frames[i].postMessage(data, '*')
-		} catch (e) {
-			// do nothing
-		}
-	}
-}
-
-let updateLikeState = (id, liked) => $(id).innerHTML = liked ? 'like' : 'unlike'
-
-function like_post(element) {
-	//if nobodys logged in dont bother
-	if(document.cookie.indexOf('logged_in=1') === -1) { return false; }
-	var reblog_key = element.getAttribute('reblog_url')
-	reblog_key = reblog_key.substring(reblog_key.lastIndexOf('/') + 1)
-	let post_id = element.getAttribute('id')
-	let root_id = post_id
-	let action = element.innerHTML.indexOf('unliked') === -1 ?
-		'unlike' : 'like'
-	let data = action + ';' + JSON.stringify(
-		{post_id: post_id, reblog_key: reblog_key, root_id: root_id})
-
-	post_message(data)
-
-	updateLikeState(post_id, action !== 'like')
-
-	return false
-}
-
-window.message = window.onmessage = e => {
-	if(e.data.indexOf("tumblr-like-requests:likeButton:updateLikeStates") !== -1) {
-		likes = JSON.parse(e.data).args[0]
-		if(likes.length === 0) {
-			updateLikeState(likes.post_id, likes.state)
-		} else {
-			for(var i = 0; i < likes.length; i++) {
-				updateLikeState(likes[i].post_id, likes[i].state)
-			}
-		}
-	}
-}
-
 //photoset code
 //i swear this is less js than tumblr's impl.
 
@@ -1107,9 +1061,6 @@ window.onload = () => {
 			{block:Date}
 			{text:Delimiter}
 			<a href="{ReblogURL}">{text:Reblog}</a>
-			{text:Delimiter}
-			<a href="" class="like_button" id="{PostID}" reblog_url="{ReblogURL}" onclick="return like_post(this)">{text:Like}</a>
-			<div class="hide">{LikeButton}</div>
 			{/block:Date}
 			{block:HasTags}
 			{text:Delimiter}{block:Tags}
