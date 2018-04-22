@@ -1,22 +1,12 @@
-<!doctype html>
 <meta charset="utf-8">
 <!-- sharp01 theme by becca.ooo
 source:  github.com/9999years/tumblr-theme-sharp01
 license: AGPL v3 (gnu.org/licenses/agpl-3.0), which means you can copy, use,
 and modify this theme but you must agpl-license your modifications as well and
 distribute this license as well as the source code with your copy -->
-<title>
-	{Title}
-	{block:SearchPage}
-		({lang:Search results for SearchQuery})
-	{/block:SearchPage}
-	{block:PermalinkPage}
-		{block:PostSummary} — {PostSummary}{/block:PostSummary}
-	{/block:PermalinkPage}
-</title>
-{block:Description}
-<meta name="description" content="{MetaDescription}">
-{/block:Description}
+<title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}) {/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+
+{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
 
 {block:Hidden}
 <meta name="if:Circular Avatar" content="1">
@@ -36,6 +26,8 @@ distribute this license as well as the source code with your copy -->
 <meta name="image:Background" content="http://static.tumblr.com/j80nuha/j5Xolp0y9/scan397-copy.jpg">
 <meta name="text:Delimiter" content="╱">
 <meta name="text:Other Links" content="">
+<meta name="text:Reblog" content="reblog">
+<meta name="text:Like" content="like">
 <meta name="text:Newer Page Text" content="← Previous">
 <meta name="text:Older Page Text" content="Next →">
 <meta name="text:Archive Link Label" content="{lang:Archive}">
@@ -57,76 +49,126 @@ distribute this license as well as the source code with your copy -->
 <meta name="color:Link Post Foreground" content="#fff">
 {/block:Hidden}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="{Favicon}">
 <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
 
-{block:PermalinkPage}
 <meta name="twitter:url" content="{Permalink}"/>
-{/block:PermalinkPage}
 <meta name="twitter:site" content="Tumblr">
 <meta name="twitter:creator" content="{BlogURL}">
-{block:Posts}
+{block:PermalinkPage}{block:Posts}
 	{block:Text}
 		<meta name="twitter:card" content="summary">
 		{block:Title}<meta name="twitter:title" content="{PlaintextTitle}"/>{/block:Title}
 		<meta name="twitter:description" content="{PlaintextBody}"/>
 		<meta name="twitter:image" content="{PortraitURL-64}"/>
 	{/block:Text}
-
 	{block:Photo}
 		<meta name="twitter:card" content="photo">
 		<meta name="twitter:image" content="{PhotoURL-500}"/>
 		{block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
 	{/block:Photo}
-
 	{block:Photoset}
 		<meta name="twitter:card" content="photo">
 		{block:Photos}<meta name="twitter:image" content="{PhotoURL-500}"/>{/block:Photos}
 		{block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
 	{/block:Photoset}
-
 	{block:Quote}
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="{PlaintextQuote}"/>
 		<meta name="twitter:description" content="{PlaintextSource}"/>
 		<meta name="twitter:image" content="{PortraitURL-64}"/>
 	{/block:Quote}
-
 	{block:Link}
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="{PlaintextName}"/>
 		<meta name="twitter:description" content="{PlaintextDescription}"/>
 		<meta name="twitter:image" content="{PortraitURL-64}"/>
 	{/block:Link}
-
 	{block:Chat}
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="{PlaintextTitle}"/>
 		<meta name="twitter:description" content="{block:Lines}{block:Label}{Label}: {/block:Label}{Line} &bull; {/block:Lines}"/>
 		<meta name="twitter:image" content="{PortraitURL-64}"/>
 	{/block:Chat}
-
 	{block:Audio}
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="{block:Artist}{Artist} - {/block:Artist}{block:TrackName}{TrackName}{/block:TrackName}"/>
 		<meta name="twitter:description" content="{PlaintextCaption}"/>
 		{block:AlbumArt}<meta name="twitter:image" content="{AlbumArtURL}"/>{/block:AlbumArt}
 	{/block:Audio}
-
 	{block:Video}
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="{PlaintextTitle}"/>
 		{block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
 	{/block:Video}
-
 	{block:Answer}
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="{PlaintextQuestion}"/>
 		<meta name="twitter:description" content="{PlaintextAnswer}"/>
 		<meta name="twitter:image" content="{PortraitURL-64}"/>
 	{/block:Answer}
-{/block:Posts}
+{/block:Posts}{/block:PermalinkPage}
+
+<meta property="og:site_name" content="{Title}"/>
+{block:IndexPage}
+	<meta property="og:title" content="{block:TagPage}#{PlaintextTag} — {/block:TagPage}{block:SearchPage}{lang:Search results for SearchQuery} — {/block:SearchPage}{Title}"/>
+	<meta property="og:url" content="{blogURL}{block:TagPage}tagged/{URLSafeTag}{/block:TagPage}"/>
+	<meta property="og:type" content="blog" />
+	<meta property="og:description" content="{MetaDescription} {block:TagPage}{PlaintextDescription}{/block:TagPage}"/>
+	<meta property="og:image" content="{PortraitURL-128}"/>
+{/block:IndexPage}
+
+{block:PermalinkPage}
+	<meta property="og:url" content="{Permalink}"/>
+	<meta property="og:type" content="article"/>
+	{block:Posts}
+		{block:Text}
+		{block:Title}<meta property="og:title" content="{PlaintextTitle}"/>{/block:Title}
+		<meta property="og:description" content="{PlaintextBody}"/>
+		<meta property="og:image" content="{PortraitURL-128}"/>
+		{/block:Text}
+		{block:Photo}
+		<meta property="og:image" content="{PhotoURL-HighRes}"/>
+		{block:Caption}<meta property="og:description" content="{PlaintextCaption}"/>{/block:Caption}
+		{/block:Photo}
+		{block:Photoset}
+		{block:Photos}
+		<meta property="og:image" content="{PhotoURL-HighRes}"/>
+		{/block:Photos}
+		{block:Caption}<meta property="og:description" content="{PlaintextCaption}"/>{/block:Caption}
+		{/block:Photoset}
+		{block:Quote}
+		<meta property="og:title" content="{PlaintextQuote}"/>
+		<meta property="og:description" content="{PlaintextSource}"/>
+		<meta property="og:image" content="{PortraitURL-128}"/>
+		{/block:Quote}
+		{block:Link}
+		<meta property="og:title" content="{PlaintextName}"/>
+		<meta property="og:description" content="{PlaintextDescription}"/>
+		{block:Thumbnail}<meta property="og:image" content="{Thumbnail}"/>{/block:Thumbnail}
+		{/block:Link}
+		{block:Chat}
+		<meta property="og:title" content="{PlaintextTitle}"/>
+		<meta property="og:description" content="{block:Lines}{block:Label}{Label}: {/block:Label}{Line} &bull; {/block:Lines}"/>
+		<meta property="og:image" content="{PortraitURL-128}"/>
+		{/block:Chat}
+		{block:Audio}
+		<meta property="og:title" content="{block:Artist}{Artist} - {/block:Artist}{block:TrackName}{TrackName}{/block:TrackName}"/>
+		<meta property="og:description" content="{PlaintextCaption}"/>
+		{block:AlbumArt}<meta property="og:image" content="{AlbumArtURL}"/>{/block:AlbumArt}
+		{/block:Audio}
+		{block:Video}
+		{block:Caption}<meta property="og:description" content="{PlaintextCaption}"/>{/block:Caption}
+		{block:VideoThumbnail}<meta property="og:image" content="{VideoThumbnailURL}"/>{/block:VideoThumbnail}
+		{/block:Video}
+		{block:Answer}
+		<meta property="og:title" content="{PlaintextQuestion}"/>
+		<meta property="og:description" content="{PlaintextAnswer}"/>
+		<meta property="og:image" content="{PortraitURL-128}"/>
+		{/block:Answer}
+	{/block:Posts}
+{/block:PermalinkPage}
 
 <style>
 html, body {
@@ -897,9 +939,9 @@ span.delimiter:first-child:before {
 			</a>
 			{block:Date}
 			{text:Delimiter}
-			<a href="{ReblogURL}">reblog</a>
+			<a href="{ReblogURL}">{text:Reblog}</a>
 			{text:Delimiter}
-			<a href="" class="like_button" id="{PostID}" reblog_url="{ReblogURL}" onclick="return like_post(this)">like</a>
+			<a href="" class="like_button" id="{PostID}" reblog_url="{ReblogURL}" onclick="return like_post(this)">{text:Like}</a>
 			<div class="hide">{LikeButton}</div>
 			{/block:Date}
 			{block:HasTags}
@@ -1000,7 +1042,7 @@ window.message = window.onmessage = e => {
 }
 
 //photoset code
-//i swear this is less js than tumblr’s impl.
+//i swear this is less js than tumblr's impl.
 
 var images = [], heights = []
 
