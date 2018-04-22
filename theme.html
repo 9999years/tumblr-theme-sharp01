@@ -738,12 +738,7 @@ function post_message(data) {
 	}
 }
 
-function updateLikeState(id, state) {
-	var el = $(id).firstChild
-	var replace     = state ? " unliked" : " liked"
-	var replaceWith = state ? " liked" : " unliked"
-	el.innerHTML = el.innerHTML.replace(replace, replaceWith)
-}
+let updateLikeState = (id, liked) => $(id).innerHTML = liked ? 'like' : 'unlike'
 
 function like_post(element) {
 	//if nobodys logged in dont bother
@@ -752,13 +747,14 @@ function like_post(element) {
 	reblog_key = reblog_key.substring(reblog_key.lastIndexOf('/') + 1)
 	let post_id = element.getAttribute('id')
 	let root_id = post_id
-	let action = element.firstChild.innerHTML.indexOf('unliked') == -1 ? 'unlike' : 'like'
+	let action = element.innerHTML.indexOf('unliked') === -1 ?
+		'unlike' : 'like'
 	let data = action + ';' + JSON.stringify(
 		{post_id: post_id, reblog_key: reblog_key, root_id: root_id})
 
 	post_message(data)
 
-	updateLikeState(post_id, action === 'like' ? true : false)
+	updateLikeState(post_id, action !== 'like')
 
 	return false
 }
@@ -774,7 +770,6 @@ window.message = window.onmessage = e => {
 			}
 		}
 	}
-	return
 }
 
 //photoset code

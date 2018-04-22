@@ -24,4 +24,8 @@ Sharp01 is a simple, sharp Tumblr theme.
 
 kinda like this
 
-![theme preview pic](https://i.imgur.com/jBSEFWo.png)
+![theme preview](https://i.imgur.com/jBSEFWo.png)
+
+but on a phone it’ll look more like this
+
+![mobile theme preview](https://i.imgur.com/JhMCvPI.png)
