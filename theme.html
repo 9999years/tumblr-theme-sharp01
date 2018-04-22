@@ -38,7 +38,7 @@ distribute this license as well as the source code with your copy -->
 <meta name="text:Other Links" content="">
 <meta name="text:Newer Page Text" content="← Previous">
 <meta name="text:Older Page Text" content="Next →">
-<meta name="text:Archive Link Label" content="archive">
+<meta name="text:Archive Link Label" content="{lang:Archive}">
 <meta name="color:Title Color" content="#000">
 <meta name="color:Description Color" content="#000">
 <meta name="color:Background gradient top" content="#fff">
@@ -155,29 +155,6 @@ html, body, input, ::placeholder {
 	font-size: 18px;
 	line-height: 1.25;
 }
-
-@font-face {
-	font-family:tumblr-icons;font-style:normal;font-weight:400;
-	src:url("https://becca.ooo/extern/tumblr-icons.eot") format("embedded-opentype"),
-	url("https://becca.ooo/extern/tumblr-icons.woff2") format("woff2"),
-	url("https://becca.ooo/extern/tumblr-icons.woff") format("woff"),
-	url("https://becca.ooo/extern/tumblr-icons.ttf") format("truetype"),
-	url("https://becca.ooo/extern/tumblr-icons.svg") format("svg");
-}
-
-[class*=" icon_"],[class^=icon_] {line-height:1;display:inline-block;}
-[class*=" icon_"]:before,[class^=icon_]:before{display:inline-block;line-height:1;font-family:tumblr-icons;}
-
-.icon_reblog_sm:before{
-	content:"\EA92";
-	font-size: 150%;
-	top: 0.1em;
-	position: relative;
-}
-
-.icon_like:before { content:"\EA4E"; }
-
-.icon_like.liked:before { content:"\EA4F"; }
 
 ul > li {
 	list-style: none;
@@ -705,14 +682,14 @@ span.delimiter:first-child:before {
 {CustomCSS}
 </style>
 <script>
-function $(id) { return document.getElementById(id); }
+let $ = id => document.getElementById(id)
 
 //super condensed version of the like button script
 function post_message(data) {
-	var iframe_count = window.parent.frames.length;
+	var iframe_count = window.parent.frames.length
 	for (var i = 0; i < iframe_count; i++) {
 		try {
-			if (window.parent.frames[i] !== window) window.parent.frames[i].postMessage(data, '*');
+			if (window.parent.frames[i] !== window) window.parent.frames[i].postMessage(data, '*')
 		} catch (e) {
 			// do nothing
 		}
@@ -720,51 +697,47 @@ function post_message(data) {
 }
 
 function updateLikeState(id, state) {
-	var el = $(id).firstChild;
-	var replace = " unliked";
-	var replaceWith = " liked";
-	if(state === false) {
-		replace = " liked";
-		replaceWith = " unliked";
-	}
-	el.className = el.className.replace(replace, replaceWith);
-};
+	var el = $(id).firstChild
+	var replace     = state ? " unliked" : " liked"
+	var replaceWith = state ? " liked" : " unliked"
+	el.innerHTML = el.innerHTML.replace(replace, replaceWith)
+}
 
 function like_post(element) {
 	//if nobodys logged in dont bother
 	if(document.cookie.indexOf('logged_in=1') === -1) { return false; }
-	var reblog_key = element.getAttribute('reblog_url');
-	reblog_key = reblog_key.substring(reblog_key.lastIndexOf('/') + 1);
-	var post_id = element.getAttribute('id');
-	var root_id = post_id;
-	var action = element.firstChild.className.indexOf('unliked') == -1 ? 'unlike' : 'like';
-	var data = action + ';' + JSON.stringify({post_id: post_id, reblog_key: reblog_key, root_id: root_id});
+	var reblog_key = element.getAttribute('reblog_url')
+	reblog_key = reblog_key.substring(reblog_key.lastIndexOf('/') + 1)
+	var post_id = element.getAttribute('id')
+	var root_id = post_id
+	var action = element.firstChild.innerHTML.indexOf('unliked') == -1 ? 'unlike' : 'like'
+	var data = action + ';' + JSON.stringify({post_id: post_id, reblog_key: reblog_key, root_id: root_id})
 
-	post_message(data);
+	post_message(data)
 
-	updateLikeState(post_id, action === 'like' ? true : false);
+	updateLikeState(post_id, action === 'like' ? true : false)
 
-	return false;
+	return false
 }
 
 window.message = window.onmessage = e => {
 	if(e.data.indexOf("tumblr-like-requests:likeButton:updateLikeStates") !== -1) {
-		likes = JSON.parse(e.data).args[0];
+		likes = JSON.parse(e.data).args[0]
 		if(likes.length === 0) {
-			updateLikeState(likes.post_id, likes.state);
+			updateLikeState(likes.post_id, likes.state)
 		} else {
 			for(var i = 0; i < likes.length; i++) {
-				updateLikeState(likes[i].post_id, likes[i].state);
+				updateLikeState(likes[i].post_id, likes[i].state)
 			}
 		}
 	}
-	return;
-};
+	return
+}
 
 //photoset code
 //i swear this is less js than tumblr’s impl.
 
-var images = [], heights = [];
+var images = [], heights = []
 
 //images, heights are arrays of photosets containing arrays of rows containing
 //arrays of images
@@ -775,107 +748,109 @@ function centerRow(i, j) {
 		images[i][j][k].parentElement.style.top =
 			(images[i][j][k].height
 			/ images[i][j][k].parentElement.parentElement.clientHeight - 1)
-			* -50 + "%";
+			* -50 + "%"
 	}
-	return;
+	return
 }
 
 function updatePhotoset(i) {
 	for(var j = 0; j < images[i].length; j++) {
 		for(var k = 0; k < images[i][j].length; k++) {
 			//update heights
-			heights[i][j][k] = images[i][j][k].height;
+			heights[i][j][k] = images[i][j][k].height
 			if(isNaN(heights[i][j][k]) || (heights[i][j][k] === 0)) {
 				//skip rows with unloaded images
-				break;
+				break
 			}
 		}
 		if((heights[i][j].includes(NaN) === false) && images[i][j].length >= 0) {
 			//if every image is loaded, resize the row
 			images[i][j][0].parentElement.parentElement.style.height =
-				Math.min.apply(null, heights[i][j]);
+				Math.min.apply(null, heights[i][j])
 		}
-		centerRow(i, j);
+		centerRow(i, j)
 	}
-	return;
+	return
 }
 
 function updatePhotosets() {
 	for(var i = 0; i < images.length; i++) {
-		updatePhotoset(i);
+		updatePhotoset(i)
 	}
-	var rows = document.getElementsByClassName("photoset-row");
+	let rows = document.getElementsByClassName("photoset-row")
 	//equiv. of a 10px margin for 700px
-	var margin = $("contents").clientWidth / 70;
+	let margin = $("contents").clientWidth / 70
 	for(var i = 0; i < rows.length; i++) {
-		rows[i].style.marginBottom = margin + "px";
+		rows[i].style.marginBottom = margin + "px"
 	}
 }
 
 function updateLightbox(e) {
-	e.preventDefault();
-    $("lightbox-img").setAttribute("src", e.target.src);
-    $("lightbox-img").style.marginTop =
-		(window.innerHeight - Math.min(+e.target.attributes.nativeheight.value, window.innerHeight * 0.9)) / 2;
-    $("lightbox-outer").style.display = "block";
-	return false;
+	e.preventDefault()
+	$("lightbox-img").setAttribute("src", e.target.src)
+	$("lightbox-img").style.marginTop =
+		(window.innerHeight
+			- Math.min(+e.target.attributes.nativeheight.value,
+				   window.innerHeight * 0.9)) / 2
+	$("lightbox-outer").style.display = "block"
+	return false
 }
 
 function initPhotoset(layout, id) {
 	var loadHandler = e => {
 		//fill in heights
-		heights[i][e.target.rownum][e.target.slot] = e.target.height;
+		heights[i][e.target.rownum][e.target.slot] = e.target.height
 		//resize j if all in j loaded
 		if(heights[i][e.target.rownum].includes(NaN) === false) {
 			e.target.parentElement.parentElement.style.height =
-				Math.min.apply(null, heights[i][e.target.rownum]) + "px";
-			centerRow(i, e.target.rownum);
+				Math.min.apply(null, heights[i][e.target.rownum]) + "px"
+			centerRow(i, e.target.rownum)
 		}
 	}
-	var row, container, i = images.length;
+	var row, container, i = images.length
 	//create new keys for this photoset
-	images[i]  = [];
-	heights[i] = [];
-	container = $("photoset-" + id);
+	images[i]  = []
+	heights[i] = []
+	container = $("photoset-" + id)
 	//turn layout into numbers
-	layout = layout.map(k => { return +k; });
+	layout = layout.map(k => { return +k; })
 	for(var j = 0; j < layout.length; j++) {
 		//create row element, tag it properly
-		row = document.createElement("div");
-		container.append(row);
-		row.className = "photoset-row row-" + layout[j];
-		images[i].push([]);
-		heights[i].push([]);
+		row = document.createElement("div")
+		container.append(row)
+		row.className = "photoset-row row-" + layout[j]
+		images[i].push([])
+		heights[i].push([])
 		//k is number of images put in the new row
 		//n is the number of elements inspected
 		for(var k = 0, n = 0; k < layout[j];) {
 			if(container.children[n].nodeName !== "A") {
-				n++;
-				continue;
+				n++
+				continue
 			}
-			heights[i][j].push(NaN);
-			images[i][j].push(row.appendChild(container.children[n]));
-			images[i][j][k] = images[i][j][k].children[0];
+			heights[i][j].push(NaN)
+			images[i][j].push(row.appendChild(container.children[n]))
+			images[i][j][k] = images[i][j][k].children[0]
 			//assign some attribs for future ref
-			images[i][j][k].rownum = j;
-			images[i][j][k].slot = k;
-			images[i][j][k].onload = loadHandler;
-			images[i][j][k].onclick = updateLightbox;
+			images[i][j][k].rownum = j
+			images[i][j][k].slot = k
+			images[i][j][k].onload = loadHandler
+			images[i][j][k].onclick = updateLightbox
 			//element is popped, reset n and increment k
-			n = 0;
-			k++;
+			n = 0
+			k++
 		}
 	}
-	return;
+	return
 }
 
-window.onresize = updatePhotosets;
+window.onresize = updatePhotosets
 
 window.onload = () => {
     $("lightbox-outer").onclick = e => {
-        e.target.style.display = "none";
-    };
-};
+        e.target.style.display = "none"
+    }
+}
 </script>
 <div id="lightbox-outer">
 <img id="lightbox-img">
@@ -1093,9 +1068,9 @@ window.onload = () => {
 			</a>
 			{block:Date}
 			{text:Delimiter}
-			<a href="{ReblogURL}"><div class="icon_reblog_sm"></div></a>
+			<a href="{ReblogURL}">reblog</a>
 			{text:Delimiter}
-			<a href="" class="like_button" id="{PostID}" reblog_url="{ReblogURL}" onclick="return like_post(this)"><div class="icon_like unliked"></div></a>
+			<a href="" class="like_button" id="{PostID}" reblog_url="{ReblogURL}" onclick="return like_post(this)">like</a>
 			<div class="hide">{LikeButton}</div>
 			{/block:Date}
 			{block:HasTags}
@@ -1124,7 +1099,7 @@ window.onload = () => {
 	</div>
 	{block:IfShowCurrentPageCount}
 	<div class="center">
-		《{block:IfShowTotalPageCount}<sup>{/block:IfShowTotalPageCount}{CurrentPage}{block:IfShowTotalPageCount}</sup>⁄<sub>{TotalPages}</sub>{/block:IfShowTotalPageCount}》
+		{block:IfShowTotalPageCount}<sup>{/block:IfShowTotalPageCount}{CurrentPage}{block:IfShowTotalPageCount}</sup>⁄<sub>{TotalPages}</sub>{/block:IfShowTotalPageCount}
 	</div>
 	{/block:IfShowCurrentPageCount}
 	<div class="next">
