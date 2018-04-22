@@ -1,0 +1,1143 @@
+<!doctype html>
+<meta charset="utf-8">
+<!-- sharp01 theme by becca.ooo
+source:  github.com/9999years/tumblr-theme-sharp01
+license: AGPL v3 (gnu.org/licenses/agpl-3.0), which means you can copy, use,
+and modify this theme but you must agpl-license your modifications as well and
+distribute this license as well as the source code with your copy -->
+<title>
+	{Title}
+	{block:SearchPage}
+		({lang:Search results for SearchQuery})
+	{/block:SearchPage}
+	{block:PermalinkPage}
+		{block:PostSummary} — {PostSummary}{/block:PostSummary}
+	{/block:PermalinkPage}
+</title>
+{block:Description}
+<meta name="description" content="{MetaDescription}">
+{/block:Description}
+
+{block:Hidden}
+<meta name="if:Circular Avatar" content="1">
+<meta name="if:Rules between posts" content="1">
+<meta name="if:Post Borders" content="0">
+<meta name="if:Post Backgrounds" content="0">
+<meta name="if:Show Current Page Count" content="1">
+<meta name="if:Show Total Page Count" content="1">
+<meta name="if:Line Break Before Links" content="1">
+<meta name="if:Show Avatar" content="1">
+<meta name="if:Show Search" content="0">
+<meta name="if:Show Ask Link" content="1">
+<meta name="if:Show Submit Link" content="1">
+<meta name="if:Show Archive Link" content="1">
+<meta name="if:Show Copyright Years" content="0">
+<meta name="if:Use Background Image" content="0">
+<meta name="image:Background" content="http://static.tumblr.com/j80nuha/j5Xolp0y9/scan397-copy.jpg">
+<meta name="text:Delimiter" content="╱">
+<meta name="text:Other Links" content="">
+<meta name="text:Newer Page Text" content="← Previous">
+<meta name="text:Older Page Text" content="Next →">
+<meta name="text:Archive Link Label" content="archive">
+<meta name="color:Title Color" content="#000">
+<meta name="color:Description Color" content="#000">
+<meta name="color:Background gradient top" content="#fff">
+<meta name="color:Background gradient bottom" content="#fff">
+<meta name="color:Body Copy" content="#222">
+<meta name="color:Divider Color" content="#222">
+<meta name="color:Blockquote Color" content="#444">
+<meta name="color:Link" content="#226">
+<meta name="color:Link Hover" content="#b26">
+<meta name="color:Quote Post Color" content="#222">
+<meta name="color:Post Border Color" content="#fff">
+<meta name="color:Post Background Color" content="#fff">
+<meta name="color:Dark Copy" content="#000">
+<meta name="color:Light Copy" content="#444">
+<meta name="color:Link Post Background" content="#aaf">
+<meta name="color:Link Post Foreground" content="#fff">
+{/block:Hidden}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+
+{block:PermalinkPage}
+<meta name="twitter:url" content="{Permalink}"/>
+{/block:PermalinkPage}
+<meta name="twitter:site" content="Tumblr">
+<meta name="twitter:creator" content="{BlogURL}">
+{block:Posts}
+	{block:Text}
+		<meta name="twitter:card" content="summary">
+		{block:Title}<meta name="twitter:title" content="{PlaintextTitle}"/>{/block:Title}
+		<meta name="twitter:description" content="{PlaintextBody}"/>
+		<meta name="twitter:image" content="{PortraitURL-64}"/>
+	{/block:Text}
+
+	{block:Photo}
+		<meta name="twitter:card" content="photo">
+		<meta name="twitter:image" content="{PhotoURL-500}"/>
+		{block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
+	{/block:Photo}
+
+	{block:Photoset}
+		<meta name="twitter:card" content="photo">
+		{block:Photos}<meta name="twitter:image" content="{PhotoURL-500}"/>{/block:Photos}
+		{block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
+	{/block:Photoset}
+
+	{block:Quote}
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{PlaintextQuote}"/>
+		<meta name="twitter:description" content="{PlaintextSource}"/>
+		<meta name="twitter:image" content="{PortraitURL-64}"/>
+	{/block:Quote}
+
+	{block:Link}
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{PlaintextName}"/>
+		<meta name="twitter:description" content="{PlaintextDescription}"/>
+		<meta name="twitter:image" content="{PortraitURL-64}"/>
+	{/block:Link}
+
+	{block:Chat}
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{PlaintextTitle}"/>
+		<meta name="twitter:description" content="{block:Lines}{block:Label}{Label}: {/block:Label}{Line} &bull; {/block:Lines}"/>
+		<meta name="twitter:image" content="{PortraitURL-64}"/>
+	{/block:Chat}
+
+	{block:Audio}
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{block:Artist}{Artist} - {/block:Artist}{block:TrackName}{TrackName}{/block:TrackName}"/>
+		<meta name="twitter:description" content="{PlaintextCaption}"/>
+		{block:AlbumArt}<meta name="twitter:image" content="{AlbumArtURL}"/>{/block:AlbumArt}
+	{/block:Audio}
+
+	{block:Video}
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{PlaintextTitle}"/>
+		{block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
+	{/block:Video}
+
+	{block:Answer}
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{PlaintextQuestion}"/>
+		<meta name="twitter:description" content="{PlaintextAnswer}"/>
+		<meta name="twitter:image" content="{PortraitURL-64}"/>
+	{/block:Answer}
+{/block:Posts}
+
+<style>
+html, body {
+	background-color: {color:Background gradient top};
+	{block:IfNotUseBackgroundImage}
+	background: linear-gradient(to bottom, {color:Background gradient top} 0%, {color:Background gradient bottom} 100%);
+	{/block:IfNotUseBackgroundImage}
+	background-attachment: fixed;
+	{block:IfUseBackgroundImage}
+	background-image: url('{image:Background}');
+	background-size: cover;
+	{/block:IfUseBackgroundImage}
+	margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+}
+
+body {
+	position: relative;
+	z-index: -100;
+}
+
+html, body, input, ::placeholder {
+	font-family: "Segoe UI", -apple-system, "Geneva", "Helvetica", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Noto Sans", "Noto Serif", "Code2001", "Code2000", "HanaMinA", "HanaMinB", "BabelStone Han", "DejaVu Sans", "DejaVu Serif", "DejaVu Sans Mono", "UniDings", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	color: {color:Body Copy};
+	font-size: 18px;
+	line-height: 1.25;
+}
+
+@font-face {
+	font-family:tumblr-icons;font-style:normal;font-weight:400;
+	src:url("https://becca.ooo/extern/tumblr-icons.eot") format("embedded-opentype"),
+	url("https://becca.ooo/extern/tumblr-icons.woff2") format("woff2"),
+	url("https://becca.ooo/extern/tumblr-icons.woff") format("woff"),
+	url("https://becca.ooo/extern/tumblr-icons.ttf") format("truetype"),
+	url("https://becca.ooo/extern/tumblr-icons.svg") format("svg");
+}
+
+[class*=" icon_"],[class^=icon_] {line-height:1;display:inline-block;}
+[class*=" icon_"]:before,[class^=icon_]:before{display:inline-block;line-height:1;font-family:tumblr-icons;}
+
+.icon_reblog_sm:before{
+	content:"\EA92";
+	font-size: 150%;
+	top: 0.1em;
+	position: relative;
+}
+
+.icon_like:before { content:"\EA4E"; }
+
+.icon_like.liked:before { content:"\EA4F"; }
+
+ul > li {
+	list-style: none;
+}
+
+ul > li:before {
+	content: '→';
+	position: absolute;
+	left: 0.8em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0.25em 0 0.25em 0;
+}
+
+h1 {
+	font-size: 64px;
+}
+
+h2 {
+	font-size: 48px;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+img, iframe {
+	max-width: 100%;
+}
+
+input {
+	background: transparent;
+	border: 1px solid {color:Body Copy};
+	padding: 2px 10px;
+	max-width: 100%;
+}
+
+a, a:visited {
+	color: {color:Link};
+	text-decoration: none;
+}
+
+a:hover {
+	color: {color:Link Hover};
+}
+
+a.permalink {
+	color: {color:Body Copy};
+}
+
+a.permalink:hover {
+	color: {color:Dark Copy};
+}
+
+a h1 {
+	color: {color:Body Copy};
+}
+
+figure {
+	margin: 15px 0;
+}
+
+blockquote figure img {
+	display: block;
+}
+
+.tag-title {
+	text-align: center;
+}
+
+.rule {
+	{block:IfRulesbetweenposts}
+	margin: 25px 0;
+	{/block:IfRulesbetweenposts}
+	{block:IfNotRulesbetweenposts}
+	margin: 50px 0;
+	{/block:IfNotRulesbetweenposts}
+}
+
+hr, .rule {
+	height: 0;
+	border: 0 solid {color:Divider Color};
+	{block:IfRulesbetweenposts}
+	border-bottom-width: 1px;
+	{/block:IfRulesbetweenposts}
+}
+
+#lightbox-outer {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+#lightbox-img {
+    max-height: 90vh;
+    max-width: 90vw;
+    margin: auto;
+    display: block;
+    margin-top: 5vh;
+}
+
+#posts hr {
+	width: 50%;
+	margin: 2em auto;
+}
+
+#title {
+	color: {color:Title Color};
+	margin: 0;
+	margin-bottom: 15px;
+	line-height: 1.1em;
+}
+
+#description {
+	color: {color:Description Color};
+}
+
+blockquote {
+	margin: 0 0 0 1em;
+	position: relative;
+}
+
+blockquote:after {
+	content: "";
+	border-left: 1px solid {color:Blockquote Color};
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -1em;
+}
+
+#container {
+	margin: 50px 25px;
+	margin-bottom: 100px;
+	z-index: 0;
+}
+
+#contents {
+	margin: auto;
+	max-width: 700px;
+}
+
+#header {
+	position: relative;
+}
+
+#portrait {
+	position: absolute;
+	left: -153px;
+	{block:IfNotCircularAvatar}
+	top: 7px;
+	{/block:IfNotCircularAvatar}
+	{block:IfCircularAvatar}
+	top: 5px;
+	border-radius: 100%;
+	{/block:IfCircularAvatar}
+}
+
+.footer {
+	position: relative;
+	height: 1em;
+}
+
+.footer .next {
+	position: absolute;
+	right: 0;
+}
+
+.footer .center {
+	text-align: center;
+	height: 0;
+}
+
+.footer .previous {
+	position: absolute;
+	left: 0;
+}
+
+.copyright {
+	text-align: center;
+	margin-top: 2em;
+}
+
+span.delimiter:before {
+	content: '{text:Delimiter}';
+}
+
+span.delimiter:first-child:before {
+	content: '';
+}
+
+.links {
+	line-height: 2;
+}
+
+.post-outer {
+	{block:IfPostBorders}
+	border: 1px solid {color:Post Border Color};
+	{block:IfNotPostBackgrounds}
+	padding: 25px;
+	{/block:IfNotPostBackgrounds}
+	{/block:IfPostBorders}
+	{block:IfPostBackgrounds}
+	padding: 25px;
+	background-color: {color:Post Background Color};
+	{/block:IfPostBackgrounds}
+}
+
+.notes ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.notes img.avatar {
+	position: relative;
+	top: 2px;
+	margin-right: 1em;
+}
+
+.hide {
+	display: none;
+}
+
+.photo > img {
+	margin: 25px auto;
+	display: block;
+}
+
+.photoset-row {
+	display: flex;
+	overflow: hidden;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.photoset-row img {
+	width: 100%;
+}
+
+.photoset-row a {
+	position: relative;
+	margin: auto;
+	margin-right: 10px;
+}
+
+.photoset-row a:last-child {
+	margin-right: 0;
+}
+
+.row-1 a {
+	width: 100%;
+}
+
+.row-2 a {
+	width: 345px;
+}
+
+.row-3 a {
+	width: 227px;
+}
+
+.row-3 a:last-child {
+	width: 226px;
+}
+
+.audio-embed, .audio-info {
+	display: inline-block;
+}
+
+.audio-embed {
+	margin-bottom: 15px;
+}
+
+.audio-info {
+	max-width: 215px;
+	margin-left: 25px;
+	vertical-align: top;
+	border: 1px solid {color:Divider Color};
+}
+
+.tumblr_video_container {
+	width: 100%!important;
+	height: initial!important;
+}
+
+.post iframe {
+	margin-bottom: 15px;
+}
+
+.audio-info > .inner {
+	margin: 25px;
+}
+
+.html_photoset, iframe.photoset {
+	max-width: 100%;
+}
+
+.chat .label {
+	font-weight: bold;
+}
+
+.info {
+	margin-top: 15px;
+	font-size: 16px;
+}
+
+.info, .info > a.permalink {
+	color: {color:Light Copy};
+}
+
+.quote > .content {
+	color: {color:Quote Post Color};
+	font-weight: 900;
+	font-style: italic;
+	position: relative;
+	line-height: 1.1em;
+}
+
+.quote > .content > .before > .inner,
+.quote > .content > .after  > .inner {
+	font-family: "Times", "Times New Roman", "Baskerville", "Didot", serif;
+	font-size: 200%;
+	top: 0.05em;
+	vertical-align: top;
+}
+
+.quote > .content > .after, .quote > .content > .before {
+	position: absolute;
+	display: inline-block;
+	z-index: -1;
+}
+
+.quote > .content > .before > .inner {
+	position: absolute;
+	left: -0.55em;
+}
+
+.quote > .content > .after > .inner {
+	display: inline-block;
+	position: relative;
+	left: -0.05em;
+	top: 0.15em;
+}
+
+.quote > .short {
+	font-size: 64px;
+}
+
+.quote > .medium {
+	font-size: 45px;
+}
+
+.quote > .long {
+	font-size: 28px;
+	font-weight: 400;
+}
+
+.quote > .source {
+	font-style: italic;
+	margin-left: 15%;
+	margin-top: 5px;
+}
+
+.big-link {
+	padding: 25px;
+	background-color: {color:Link Post Background};
+	color: {color:Link Post Foreground};
+	margin-bottom: 25px;
+}
+
+.big-link a {
+	color: {color:Link Post Foreground};
+}
+
+.big-link .title {
+	font-size: 150%;
+}
+
+.question {
+	padding: 15px;
+	margin-bottom: 10px;
+	border: 1px solid {color:Body Copy};
+}
+
+.asker {
+	margin-bottom: 15px;
+	text-align: right;
+	position: relative;
+}
+
+.asker img {
+	position: relative;
+	top: 1px;
+}
+
+.tag {
+	padding: 0 3px 2px 2px;
+	border: 1px solid {color:Link};
+	line-height: 200%;
+}
+
+.tag:hover {
+	border-color: {color:Link Hover};
+}
+
+.tmblr-attribution {
+	font-size: 16px;
+	font-style: italic;
+}
+
+@media (max-width: 1020px) {
+	#portrait {
+		left: initial;
+		right: 0;
+		top: -5px;
+		width: 20%;
+	}
+
+	#header h1 {
+		width: 75%;
+	}
+
+	#description {
+		max-width: 550px;
+	}
+}
+
+@media (max-width: 880px) {
+	img {
+		height: initial;
+	}
+
+	.quote > .short {
+	   font-size: 50px;
+	}
+
+	.quote > .medium {
+		font-size: 40px;
+	}
+
+	.quote > .long {
+		font-size: 24px;
+	}
+
+	.quote > .content {
+		text-indent: 0.6em;
+	}
+
+	.quote > .content > .before > .inner {
+		left: -0.85em;
+	}
+
+	.quote > .content > .after > .inner {
+		position: absolute;
+		left: -0.35em;
+	}
+}
+
+@media (max-width: 750px) {
+	.audio-info {
+		max-width: 100%;
+		width: 100%;
+		margin-left: 0;
+		margin-bottom: 25px;
+	}
+
+	#container {
+		margin: 15px 15px;
+		margin-bottom: 100px;
+	}
+
+	#header h1 {
+		width: 100%;
+		font-size: 48px;
+	}
+
+	#portrait {
+		position: initial;
+		width: initial;
+		margin-bottom: 15px;
+	}
+
+	.row-2 a {
+		width: 49.2857%;
+	}
+
+	.row-3 a, .row-3 a:last-child {
+		width: 31.8571%;
+	}
+
+	.photoset-row a {
+		margin-right: 1.4286%;
+	}
+
+}
+
+@media (max-width: 600px) {
+	blockquote {
+	margin-left: 0.5em;
+	}
+
+	blockquote:after {
+	left: -0.5em;
+	}
+}
+
+@media (max-width: 550px) {
+	.post.video iframe {
+		height: initial!important;
+	}
+}
+
+@media (max-width: 400px) {
+	#header h1 {
+		font-size: 30px;
+	}
+}
+
+{CustomCSS}
+</style>
+<script>
+function $(id) { return document.getElementById(id); }
+
+//super condensed version of the like button script
+function post_message(data) {
+	var iframe_count = window.parent.frames.length;
+	for (var i = 0; i < iframe_count; i++) {
+		try {
+			if (window.parent.frames[i] !== window) window.parent.frames[i].postMessage(data, '*');
+		} catch (e) {
+			// do nothing
+		}
+	}
+}
+
+function updateLikeState(id, state) {
+	var el = $(id).firstChild;
+	var replace = " unliked";
+	var replaceWith = " liked";
+	if(state === false) {
+		replace = " liked";
+		replaceWith = " unliked";
+	}
+	el.className = el.className.replace(replace, replaceWith);
+};
+
+function like_post(element) {
+	//if nobodys logged in dont bother
+	if(document.cookie.indexOf('logged_in=1') === -1) { return false; }
+	var reblog_key = element.getAttribute('reblog_url');
+	reblog_key = reblog_key.substring(reblog_key.lastIndexOf('/') + 1);
+	var post_id = element.getAttribute('id');
+	var root_id = post_id;
+	var action = element.firstChild.className.indexOf('unliked') == -1 ? 'unlike' : 'like';
+	var data = action + ';' + JSON.stringify({post_id: post_id, reblog_key: reblog_key, root_id: root_id});
+
+	post_message(data);
+
+	updateLikeState(post_id, action === 'like' ? true : false);
+
+	return false;
+}
+
+window.message = window.onmessage = e => {
+	if(e.data.indexOf("tumblr-like-requests:likeButton:updateLikeStates") !== -1) {
+		likes = JSON.parse(e.data).args[0];
+		if(likes.length === 0) {
+			updateLikeState(likes.post_id, likes.state);
+		} else {
+			for(var i = 0; i < likes.length; i++) {
+				updateLikeState(likes[i].post_id, likes[i].state);
+			}
+		}
+	}
+	return;
+};
+
+//photoset code
+//i swear this is less js than tumblr’s impl.
+
+var images = [], heights = [];
+
+//images, heights are arrays of photosets containing arrays of rows containing
+//arrays of images
+
+function centerRow(i, j) {
+	for(var k = 0; k < images[i][j].length; k++) {
+		//center each image vertically in its row
+		images[i][j][k].parentElement.style.top =
+			(images[i][j][k].height
+			/ images[i][j][k].parentElement.parentElement.clientHeight - 1)
+			* -50 + "%";
+	}
+	return;
+}
+
+function updatePhotoset(i) {
+	for(var j = 0; j < images[i].length; j++) {
+		for(var k = 0; k < images[i][j].length; k++) {
+			//update heights
+			heights[i][j][k] = images[i][j][k].height;
+			if(isNaN(heights[i][j][k]) || (heights[i][j][k] === 0)) {
+				//skip rows with unloaded images
+				break;
+			}
+		}
+		if((heights[i][j].includes(NaN) === false) && images[i][j].length >= 0) {
+			//if every image is loaded, resize the row
+			images[i][j][0].parentElement.parentElement.style.height =
+				Math.min.apply(null, heights[i][j]);
+		}
+		centerRow(i, j);
+	}
+	return;
+}
+
+function updatePhotosets() {
+	for(var i = 0; i < images.length; i++) {
+		updatePhotoset(i);
+	}
+	var rows = document.getElementsByClassName("photoset-row");
+	//equiv. of a 10px margin for 700px
+	var margin = $("contents").clientWidth / 70;
+	for(var i = 0; i < rows.length; i++) {
+		rows[i].style.marginBottom = margin + "px";
+	}
+}
+
+function updateLightbox(e) {
+	e.preventDefault();
+    $("lightbox-img").setAttribute("src", e.target.src);
+    $("lightbox-img").style.marginTop =
+		(window.innerHeight - Math.min(+e.target.attributes.nativeheight.value, window.innerHeight * 0.9)) / 2;
+    $("lightbox-outer").style.display = "block";
+	return false;
+}
+
+function initPhotoset(layout, id) {
+	var loadHandler = e => {
+		//fill in heights
+		heights[i][e.target.rownum][e.target.slot] = e.target.height;
+		//resize j if all in j loaded
+		if(heights[i][e.target.rownum].includes(NaN) === false) {
+			e.target.parentElement.parentElement.style.height =
+				Math.min.apply(null, heights[i][e.target.rownum]) + "px";
+			centerRow(i, e.target.rownum);
+		}
+	}
+	var row, container, i = images.length;
+	//create new keys for this photoset
+	images[i]  = [];
+	heights[i] = [];
+	container = $("photoset-" + id);
+	//turn layout into numbers
+	layout = layout.map(k => { return +k; });
+	for(var j = 0; j < layout.length; j++) {
+		//create row element, tag it properly
+		row = document.createElement("div");
+		container.append(row);
+		row.className = "photoset-row row-" + layout[j];
+		images[i].push([]);
+		heights[i].push([]);
+		//k is number of images put in the new row
+		//n is the number of elements inspected
+		for(var k = 0, n = 0; k < layout[j];) {
+			if(container.children[n].nodeName !== "A") {
+				n++;
+				continue;
+			}
+			heights[i][j].push(NaN);
+			images[i][j].push(row.appendChild(container.children[n]));
+			images[i][j][k] = images[i][j][k].children[0];
+			//assign some attribs for future ref
+			images[i][j][k].rownum = j;
+			images[i][j][k].slot = k;
+			images[i][j][k].onload = loadHandler;
+			images[i][j][k].onclick = updateLightbox;
+			//element is popped, reset n and increment k
+			n = 0;
+			k++;
+		}
+	}
+	return;
+}
+
+window.onresize = updatePhotosets;
+
+window.onload = () => {
+    $("lightbox-outer").onclick = e => {
+        e.target.style.display = "none";
+    };
+};
+</script>
+<div id="lightbox-outer">
+<img id="lightbox-img">
+</div>
+<div id="container">
+<div id="contents">
+<div id="header">
+	<a href="/">
+		{block:IfShowAvatar}
+		<img src="{PortraitURL-128}" id="portrait">
+		{/block:IfShowAvatar}
+		<h1 id="title">{Title}</h1>
+	</a>
+	<div id="description">
+		{block:IfShowSearch}
+		<form action="/search" method="get" id="search-form">
+		{/block:IfShowSearch}
+		{block:Description}
+		<p>{Description}
+		{/block:Description}
+		<span class="links">
+		{block:IfLineBreakBeforeLinks}<p>{/block:IfLineBreakBeforeLinks}
+		{block:IfNotLineBreakBeforeLinks}{text:Delimiter}{/block:IfNotLineBreakBeforeLinks}
+		{block:IfShowAskLink}
+		{block:AskEnabled}
+		<a href="/ask">{AskLabel}</a>
+		{/block:AskEnabled}
+		{/block:IfShowAskLink}
+		{block:IfShowSubmitLink}
+		{block:SubmissionsEnabled}
+		<span class="delimiter"></span> <a href="/submit">{SubmitLabel}</a>
+		{/block:SubmissionsEnabled}
+		{/block:IfShowSubmitLink}
+		{block:IfShowArchiveLink}
+		<span class="delimiter"></span> <a href="/archive">{text:Archive Link Label}</a>
+		{/block:IfShowArchiveLink}
+		{block:IfOtherLinks}
+		<span class="delimiter"></span> {text:Other Links}
+		{/block:IfOtherLinks}
+		{block:IfShowSearch}
+		<span class="delimiter"></span> <input type="text" name="q" placeholder="search">
+		{/block:IfShowSearch}
+		</span>
+		{block:IfShowSearch}</form>{/block:IfShowSearch}
+	</div>
+</div>
+
+<div class="rule"></div>
+
+{block:TagPage}
+<h2 class="tag-title"><a href="{TagURL}">#{Tag}</a></h2>
+<div class="rule"></div>
+{/block:TagPage}
+
+{block:DayPage}
+<h2 class="tag-title">
+	{block:DayPagination}
+	{block:PreviousDayPage}
+	<a href="{PreviousDayPage}">backwards</a>
+	{/block:PreviousDayPage}
+	{block:NextDayPage}
+	<a href="{NextDayPage}">forwards</a>
+	{/block:NextDayPage}
+	{/block:DayPagination}
+</h2>
+<div class="rule"></div>
+{/block:DayPage}
+
+{block:SearchPage}
+<h2>{SearchResultCount} results for {SearchQuery}</h2>
+<div class="rule"></div>
+{/block:SearchPage}
+
+<div id="posts">
+	{block:Posts}
+	<div class="post-outer">
+		{block:Answer}
+		<div class="post answer">
+			<div class="question">{Question}</div>
+			<div class="asker">
+				<img src="{AskerPortraitURL-16}" srcset="{AskerPortraitURL-40} 2x, {AskerPortraitURL-48} 3x, {AskerPortraitURL-64} 4x, {AskerPortraitURL-128} 8x">
+				{Asker}
+			</div>
+			<div class="answer">{Answer}</div>
+		</div>
+		{/block:Answer}
+		{block:Text}
+		<div class="post text">
+			{block:Title}
+			<h2><a href="{Permalink}">{Title}</a></h2>
+			{/block:Title}{Body}
+		</div>
+		{/block:Text}
+		{block:Photo}
+		<div class="post photo">
+			<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+
+			{block:Caption}
+			<div class="caption">{Caption}</div>
+			{/block:Caption}
+		</div>
+		{/block:Photo}
+		{block:Panorama}
+		<div class="post panorama">
+			{LinkOpenTag}
+			<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
+			{LinkCloseTag}{block:Caption}
+			<div class="caption">{Caption}</div>
+			{/block:Caption}
+		</div>
+		{/block:Panorama}
+		{block:Photoset}
+		<div class="post photoset">
+			<div class="photoset-lightbox">
+				<img>
+			</div>
+			<div id="photoset-{PostId}">
+				{block:Photos}
+				<a href="{PhotoURL-HighRes}">
+				<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" nativeheight="{PhotoHeight-HighRes}" nativewidth="{PhotoWidth-HighRes}">
+				</a>
+				{/block:Photos}
+			</div>
+			<script>
+				initPhotoset({JSPhotosetLayout}, "{PostId}");
+			</script>
+			{block:Caption}
+			<div class="caption">{Caption}</div>
+			{/block:Caption}
+		</div>
+		{/block:Photoset}
+		{block:Quote}
+		<div class="post quote">
+			<div class="content {Length}">
+				<div class="before"><div class="inner">“</div></div>{Quote}
+				<div class="after"><div class="inner">”</div></div>
+			</div>
+			{block:Source}
+			<div class="source">— {Source}</div>
+			{/block:Source}
+		</div>
+		{/block:Quote}
+		{block:Link}
+		<div class="post link">
+			<a href="{URL}">
+				<div class="big-link">
+					<div class="title">{Name}</div>
+				</div>
+			</a>
+
+			{block:Description}
+			<div class="description">{Description}</div>
+			{/block:Description}
+		</div>
+		{/block:Link}
+		{block:Chat}
+		<div class="post chat">
+			{block:Title}
+			<h2><a href="{Permalink}">{Title}</a></h2>
+			{/block:Title}
+
+			<div class="chat-body">
+				{block:Lines}
+				<div class="{Alt} user_{UserNumber}">
+					{block:Label}
+					<span class="label">{Label}</span>
+					{/block:Label}{Line}
+				</div>
+				{/block:Lines}
+			</div>
+		</div>
+		{/block:Chat}
+		{block:Video}
+		<div class="post video">
+			{Video-700}
+			{block:Caption}
+			<div class="caption">{Caption}</div>
+			{/block:Caption}
+		</div>
+		{/block:Video}
+		{block:Audio}
+		<div class="post audio">
+			<div class="audio-embed">
+				{AudioEmbed-400}
+			</div>
+			<div class="audio-info">
+				<div class="inner">
+					{block:TrackName}
+					{TrackName}
+					{/block:TrackName}
+					{block:Artist}
+					{text:Delimiter} {Artist}
+					{/block:Artist}
+					{block:Album}
+					({Album})
+					{/block:Album}
+				</div>
+			</div>
+			{block:Caption}
+			<div class="caption">{Caption}</div>
+			{/block:Caption}
+		</div>
+		{/block:Audio}
+		<div class="info">
+			<a href="{Permalink}" class="permalink">
+				{block:Date}
+				{12Hour}:{Minutes}{AmPm} {text:Delimiter} {ShortDayOfWeek} {DayOfMonth} {ShortMonth} {Year}
+				{/block:Date}
+				{block:NoteCount}
+				{text:Delimiter} {NoteCountWithLabel}
+				{/block:NoteCount}
+				{block:ContentSource}
+				{text:Delimiter} by <a href="{SourceURL}">{SourceTitle}</a>
+				{/block:ContentSource}
+			</a>
+			{block:Date}
+			{text:Delimiter}
+			<a href="{ReblogURL}"><div class="icon_reblog_sm"></div></a>
+			{text:Delimiter}
+			<a href="" class="like_button" id="{PostID}" reblog_url="{ReblogURL}" onclick="return like_post(this)"><div class="icon_like unliked"></div></a>
+			<div class="hide">{LikeButton}</div>
+			{/block:Date}
+			{block:HasTags}
+			{text:Delimiter}{block:Tags}
+			<a href="{TagUrl}"><span class="tag">#{Tag}</span></a>
+			{/block:Tags}
+			{/block:HasTags}
+		</div>
+		{block:PostNotes}
+		<div class="rule"></div>
+		<div class="notes">
+			{PostNotes}
+		</div>
+		{/block:PostNotes}
+	</div>
+	<div class="rule"></div>
+	{/block:Posts}
+</div>
+
+<div class="footer">
+	{block:Pagination}
+	<div class="previous">
+		{block:PreviousPage}
+		<a href="{PreviousPage}">{text:Newer page text}</a>
+		{/block:PreviousPage}
+	</div>
+	{block:IfShowCurrentPageCount}
+	<div class="center">
+		《{block:IfShowTotalPageCount}<sup>{/block:IfShowTotalPageCount}{CurrentPage}{block:IfShowTotalPageCount}</sup>⁄<sub>{TotalPages}</sub>{/block:IfShowTotalPageCount}》
+	</div>
+	{/block:IfShowCurrentPageCount}
+	<div class="next">
+		{block:NextPage}
+		<a href="{NextPage}">{text:Older page text}</a>
+		{/block:NextPage}
+	</div>
+	{/block:Pagination}
+</div>
+{block:IfShowCopyrightYears}
+<div class="copyright">
+	{CopyrightYears}
+</div>
+{/block:IfShowCopyrightYears}
+</div>
+</div>
