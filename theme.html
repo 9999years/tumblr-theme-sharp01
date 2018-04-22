@@ -738,10 +738,10 @@ span.delimiter:first-child:before {
 <h2 class="tag-title">
 	{block:DayPagination}
 	{block:PreviousDayPage}
-	<a href="{PreviousDayPage}">backwards</a>
+	<a href="{PreviousDayPage}">{lang:Previous}</a>
 	{/block:PreviousDayPage}
 	{block:NextDayPage}
-	<a href="{NextDayPage}">forwards</a>
+	<a href="{NextDayPage}">{lang:Next}</a>
 	{/block:NextDayPage}
 	{/block:DayPagination}
 </h2>
@@ -749,7 +749,7 @@ span.delimiter:first-child:before {
 {/block:DayPage}
 
 {block:SearchPage}
-<h2>{SearchResultCount} results for {SearchQuery}</h2>
+<h2>{lang:Found SearchResultCount results for SearchQuery}</h2>
 <div class="rule"></div>
 {/block:SearchPage}
 
@@ -972,10 +972,11 @@ function like_post(element) {
 	if(document.cookie.indexOf('logged_in=1') === -1) { return false; }
 	var reblog_key = element.getAttribute('reblog_url')
 	reblog_key = reblog_key.substring(reblog_key.lastIndexOf('/') + 1)
-	var post_id = element.getAttribute('id')
-	var root_id = post_id
-	var action = element.firstChild.innerHTML.indexOf('unliked') == -1 ? 'unlike' : 'like'
-	var data = action + ';' + JSON.stringify({post_id: post_id, reblog_key: reblog_key, root_id: root_id})
+	let post_id = element.getAttribute('id')
+	let root_id = post_id
+	let action = element.firstChild.innerHTML.indexOf('unliked') == -1 ? 'unlike' : 'like'
+	let data = action + ';' + JSON.stringify(
+		{post_id: post_id, reblog_key: reblog_key, root_id: root_id})
 
 	post_message(data)
 
