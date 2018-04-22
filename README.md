@@ -19,3 +19,9 @@ Sharp01 is a simple, sharp Tumblr theme.
   just get text now. Sorry.
 * High customizability; there’s about a billion options and ways to customize
   the theme’s text and look, from post borders to background gradients.
+
+# what’s it look like
+
+kinda like this
+
+![theme preview pic](https://i.imgur.com/jBSEFWo.png)
