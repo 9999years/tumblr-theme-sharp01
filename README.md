@@ -15,6 +15,7 @@ sharp01 is a simple, sharp Tumblr theme.
   even if it’s probably more reliable.
 * High customizability; there’s about a billion options and ways to customize
   the theme’s text and look, from post borders to background gradients.
+* A good like icon! Appreciate it, I payed for it in blood.
 * **Mobile-accessible.** This is a big one! sharp01 looks *great* on mobile
   devices by default!
 
@@ -43,16 +44,6 @@ but on a phone it’ll look more like this
 
 # known issues
 
-* There is no like button; this is because the default like button is an icon
-  several years out of date and the color isn't customizable, so it looks
-  horrible on anything that wasn’t designed for text in Tumblr Gray, which
-  sucks.
-
-  For a while I had a stripped-down version of the like button Javascript along
-  with the Tumblr icon font loaded into the theme, which hooked into the weird
-  intra-frame messaging framework Tumblr has going on. Ultimately, it was
-  brittle as hell and broke when Tumblr changed some tiny server permissions or
-  something in the API. I don’t know. I don’t think I’ll fix it.
 * Default colors are a bit boring. Sorry!
 * The CSS is a bit weighty. There’s about 550 lines of it. That’s a lot, for me
   at least. [becca.ooo] has about ⅕ of that! The reason for this is pretty
@@ -71,7 +62,8 @@ but on a phone it’ll look more like this
   types of content — but the lack of a good “base” theme and the lack of
   resources such as good default photosets make creating a *good* theme *much*
   harder than it should be. This thing is a huge timesink. It eats hours
-  whenever I touch it, so I try not to. Pull requests are welcome but I won’t
+  whenever I touch it, so I try not to. Evidence: I just wasted about 3 hours
+  working on a like icon. Pull requests are welcome but I won’t
   really put any effort in.
 
 [becca.ooo]: https://becca.ooo/
