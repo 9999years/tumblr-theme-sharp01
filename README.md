@@ -1,6 +1,6 @@
 # sharp01
 
-sharp01 is a simple, sharp Tumblr theme.
+sharp01 is a simple, sharp Tumblr theme. [live demo]
 
 # features
 
@@ -61,7 +61,9 @@ but on a phone it’ll look more like this
   system, it’s needed.
 * Audio posts aren’t ideal. They’re *fine*, but not great.
 
-Tumblr makes developing themes *really bad*. This is partially not Tumblr’s
+# why is making a good tumblr theme so hard?
+
+Tumblr makes developing themes *really bad*. This is *partially* not Tumblr’s
 fault — a lot of the difficulty comes from having to support so many different
 types of content — but the lack of a good “base” theme and the lack of resources
 such as good default photosets make creating a *good* theme *much* harder than
@@ -69,5 +71,49 @@ it should be. This thing is a huge timesink. It eats hours whenever I touch it,
 so I try not to. Evidence: I just wasted about 3 hours working on a like icon.
 Pull requests are welcome but I won’t really put any effort in.
 
+There’s also a huge amount of esoteric edge-cases. Like posts with 30 different
+reblogged comments (which leads to the infamous discourse lines), or photoset
+lightboxes, or asks with reblogs, or posts with a deactivated OP.
+
+Additionally, the set of “sample posts” Tumblr offers to preview your blog with
+are hopelessly incomplete; they lack reblogs at all, they don’t show any sort of
+ask posts, they haven’t been updated in almost a decade, and they don’t run
+scripts, making previewing a theme with them completely unrealistic. If you want
+to test a Tumblr theme, your only choice is to paste it in, click save, and hit
+refresh on the blog until the cache updates. There’s no way to develop a tumblr
+theme locally, particularly because there’s so much undocumented behavior,like
+how the `</head>` inserts all the OpenGraph and Twitter card `<meta>` tags —
+which I only discovered because the `</head>` (and many other tags) are
+optional, and I’d omitted them for brevity. There’s also [this huge list of
+completely undocumented theme variables][undocs].
+
+## things to account for when developing a tumblr theme
+
+* There’s three different sizes of quote post, which are tagged `.short`,
+  `.medium`, and `.long` based on their length.
+* Post notes.
+* Post sources, which may be in or out of Tumblr entirely.
+* Pages! Custom content pages (don’t show the date on these!), permalink post
+  pages, search pages, tag pages, chronological tag pages, date pages, and so
+  on. That’s only the ones I can remember off the top of my head.
+* Reblog and like buttons, which ideally fit the rest of the theme
+  stylistically. Good luck with *that* if you don’t have a strong background in
+  CSS and web fonts. (You essentially need to include a base64-encoded WOFF).
+* Photosets! These can have up to 9 photos with up to 3 in each row. By default,
+  `{Photoset}` inserts an `<iframe>` with the photoset in it, which
+  1. Doesn’t resize dynamically and
+  2. You can’t style OR touch with Javascript, because `<iframe>`s are sandboxed
+     to hell and back.
+  The only way to make a good photoset is by inserting each photo and rolling
+  Javascript to assemble it back into what it should look like in the first
+  place.
+* What happens when you click on a photo in a photoset? By default, if you’re
+  using the broken `{Photoset}` variable, some Javascript runs to insert a
+  lightbox dynamically. If you’ve disabled Javascript, clicking on the photoset
+  resizes some stuff and ruins the photoset instantly and irrevocably.
+  Fantastic.
+
 [becca.ooo]: https://becca.ooo/
 [Ex Libris]: http://www.exlibrisgroup.com/products/primo-library-discovery/
+[undocs]: http://bychloethemes.tumblr.com/undocs
+[live demo]: https://sharp01-theme.tumblr.com/

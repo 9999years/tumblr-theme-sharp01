@@ -29,7 +29,6 @@ distribute this license as well as the source code with your copy -->
 <meta name="text:Other Links" content="">
 <meta name="text:Newer Page Text" content="← Previous">
 <meta name="text:Older Page Text" content="Next →">
-<meta name="text:Archive Link Label" content="{lang:Archive}">
 <meta name="color:Title Color" content="#000">
 <meta name="color:Description Color" content="#000">
 <meta name="color:Background gradient top" content="#fff">
@@ -80,14 +79,26 @@ html, body, input, ::placeholder {
 	line-height: 1.25;
 }
 
-ul > li {
+ol, ul {
+	padding: 0;
+}
+
+ul {
 	list-style: none;
+}
+
+ul > li {
+	position: relative;
 }
 
 ul > li:before {
 	content: '→';
 	position: absolute;
-	left: 0.8em;
+	left: -1.5em;
+}
+
+ol > li {
+	padding-left: 0.25em
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -100,6 +111,10 @@ h1 {
 
 h2 {
 	font-size: 48px;
+}
+
+.caption h2 {
+	font-size: 36px;
 }
 
 p {
@@ -267,12 +282,8 @@ blockquote:after {
 	margin-top: 2em;
 }
 
-span.delimiter:before {
-	content: '{text:Delimiter}';
-}
-
-span.delimiter:first-child:before {
-	content: '';
+span.delimiter:first-child {
+	display: none;
 }
 
 .links {
@@ -313,6 +324,7 @@ span.delimiter:first-child:before {
 	padding: 1em 0 0.5em 0;
 }
 
+.reblog-list > div:first-child > .reblog-header,
 .original-reblog > .reblog-header {
 	border-top: none;
 	padding: 0 0 0.5em 0;
@@ -451,6 +463,7 @@ span.delimiter:first-child:before {
 
 .quote > .medium {
 	font-size: 45px;
+	font-weight: 600;
 }
 
 .quote > .long {
@@ -810,17 +823,17 @@ window.onload = () => {
 		{/block:IfShowAskLink}
 		{block:IfShowSubmitLink}
 		{block:SubmissionsEnabled}
-		<span class="delimiter"></span> <a href="/submit">{SubmitLabel}</a>
+		<span class="delimiter">{text:Delimiter}</span> <a href="/submit">{SubmitLabel}</a>
 		{/block:SubmissionsEnabled}
 		{/block:IfShowSubmitLink}
 		{block:IfShowArchiveLink}
-		<span class="delimiter"></span> <a href="/archive">{text:Archive Link Label}</a>
+		<span class="delimiter">{text:Delimiter}</span> <a href="/archive">{lang:Archive}</a>
 		{/block:IfShowArchiveLink}
 		{block:IfOtherLinks}
-		<span class="delimiter"></span> {text:Other Links}
+		<span class="delimiter">{text:Delimiter}</span> {text:Other Links}
 		{/block:IfOtherLinks}
 		{block:IfShowSearch}
-		<span class="delimiter"></span> <input type="text" name="q" placeholder="search">
+		<span class="delimiter">{text:Delimiter}</span> <input type="text" name="q" placeholder="search">
 		{/block:IfShowSearch}
 		</span>
 		{block:IfShowSearch}</form>{/block:IfShowSearch}
@@ -903,15 +916,12 @@ window.onload = () => {
 				<div class="before"><div class="inner">“</div></div>{Quote}
 				<div class="after"><div class="inner">”</div></div>
 			</div>
-			{block:Source}
-			<div class="source">— {Source}</div>
-			{/block:Source}
 		{/block:Quote}
 		{block:Link}
 		<div class="post link">
 			<a href="{URL}">
 				<div class="big-link">
-					<div class="title">{Name}</div>
+					<div class="title"><span></span>{Host} <span class="delimiter">{text:Delimiter}</span>{Name}</div>
 				</div>
 			</a>
 		{/block:Link}
@@ -956,7 +966,15 @@ window.onload = () => {
 		{/block:Audio}
 
 		{block:NotReblog}
-		<div class="caption">{Caption}</div>
+		<div class="caption">
+			{Caption}
+			{block:Text}{Body}{/block:Text}
+			{block:Link}{Description}{/block:Link}
+			{block:Ask}{Replies}{/block:Ask}
+			{block:Quote}{block:Source}
+			<div class="source">— {Source}</div>
+			{/block:Source}{/block:Quote}
+		</div>
 		{/block:NotReblog}
 
 		{block:RebloggedFrom}
@@ -995,6 +1013,7 @@ window.onload = () => {
 
 		</div>
 		<div class="info">
+			{block:HasPermalink}
 			<a href="{Permalink}" class="permalink">
 				{block:Date}
 				{12Hour}:{Minutes}{AmPm} {text:Delimiter} {ShortDayOfWeek} {DayOfMonth} {ShortMonth} {Year}
@@ -1002,16 +1021,20 @@ window.onload = () => {
 				{block:NoteCount}
 				{text:Delimiter} {NoteCountWithLabel}
 				{/block:NoteCount}
-				{block:ContentSource}
-				{text:Delimiter} by <a href="{SourceURL}">{SourceTitle}</a>
-				{/block:ContentSource}
 			</a>
-			{text:Delimiter}
+			{/block:HasPermalink}
+			{block:ContentSource}
+				{text:Delimiter} by <a href="{SourceURL}">{SourceTitle}</a>
+			{/block:ContentSource}
+			{block:HasPermalink}
+			<span class="delimiter">{text:Delimiter}</span>
 			<div class="control reblog-control">{ReblogButton size="16" color="black"}</div>
-			{text:Delimiter}
+			<span class="delimiter">{text:Delimiter}</span>
 			<div class="control like-control link-like">{LikeButton size="16" color="black"}</div>
+			{/block:HasPermalink}
 			{block:HasTags}
-			{text:Delimiter}{block:Tags}
+			<span class="delimiter">{text:Delimiter}</span>
+			{block:Tags}
 			<a href="{TagUrl}"><span class="tag">#{Tag}</span></a>
 			{/block:Tags}
 			{/block:HasTags}
