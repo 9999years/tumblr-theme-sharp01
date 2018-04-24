@@ -1,6 +1,6 @@
 # sharp01
 
-sharp01 is a simple, sharp Tumblr theme. [live demo]
+sharp01 is a simple, sharp Tumblr theme. [install], [live demo]
 
 # features
 
@@ -119,6 +119,7 @@ completely undocumented theme variables][undocs].
   resizes some stuff and ruins the photoset instantly and irrevocably.
   Fantastic.
 
+[install]: https://www.tumblr.com/theme/40895
 [becca.ooo]: https://becca.ooo/
 [Ex Libris]: http://www.exlibrisgroup.com/products/primo-library-discovery/
 [undocs]: http://bychloethemes.tumblr.com/undocs
