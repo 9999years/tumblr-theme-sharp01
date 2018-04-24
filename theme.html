@@ -163,8 +163,11 @@ blockquote figure img {
 	text-align: center;
 }
 
-.rule {
+hr {
+	height: 0;
+	border: 0 solid {color:Border Color};
 	{block:IfRulesbetweenposts}
+	border-bottom-width: 1px;
 	margin: 25px 0;
 	{/block:IfRulesbetweenposts}
 	{block:IfNotRulesbetweenposts}
@@ -172,12 +175,9 @@ blockquote figure img {
 	{/block:IfNotRulesbetweenposts}
 }
 
-hr, .rule {
-	height: 0;
-	border: 0 solid {color:Border Color};
-	{block:IfRulesbetweenposts}
-	border-bottom-width: 1px;
-	{/block:IfRulesbetweenposts}
+.post hr {
+	width: 50%;
+	margin: 2em auto;
 }
 
 #lightbox-outer {
@@ -196,11 +196,6 @@ hr, .rule {
     margin: auto;
     display: block;
     margin-top: 5vh;
-}
-
-#posts hr {
-	width: 50%;
-	margin: 2em auto;
 }
 
 #title {
@@ -498,6 +493,11 @@ span.delimiter:first-child {
 
 .big-link .title {
 	font-size: 150%;
+}
+
+.post .big-link hr {
+	width: 100%;
+	border-color: {color:Link Post Foreground};
 }
 
 .question {
@@ -856,11 +856,11 @@ window.onload = () => {
 	</div>
 </div>
 
-<div class="rule"></div>
+<hr>
 
 {block:TagPage}
 <h2 class="tag-title"><a href="{TagURL}">#{Tag}</a></h2>
-<div class="rule"></div>
+<hr>
 {/block:TagPage}
 
 {block:DayPage}
@@ -874,12 +874,12 @@ window.onload = () => {
 	{/block:NextDayPage}
 	{/block:DayPagination}
 </h2>
-<div class="rule"></div>
+<hr>
 {/block:DayPage}
 
 {block:SearchPage}
 <h2>{lang:Found SearchResultCount results for SearchQuery}</h2>
-<div class="rule"></div>
+<hr>
 {/block:SearchPage}
 
 <div id="posts">
@@ -932,7 +932,8 @@ window.onload = () => {
 		{block:Link}
 			<a href="{URL}">
 				<div class="big-link">
-					<div class="title"><span></span>{Host} <span class="delimiter">{text:Delimiter}</span>{Name}</div>
+					<div class="title"><span></span>{Host} <span class="delimiter">{text:Delimiter}</span> {Name}</div>
+					{block:Excerpt}<hr>{Excerpt}{/block:Excerpt}
 				</div>
 			</a>
 		{/block:Link}
@@ -1046,13 +1047,13 @@ window.onload = () => {
 			{/block:HasTags}
 		</div>
 		{block:PostNotes}
-		<div class="rule"></div>
+		<hr>
 		<div class="notes">
 			{PostNotes}
 		</div>
 		{/block:PostNotes}
 	</div>
-	<div class="rule"></div>
+	<hr>
 	{/block:Posts}
 </div>
 

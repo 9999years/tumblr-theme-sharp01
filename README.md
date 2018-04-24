@@ -7,7 +7,7 @@ sharp01 is a simple, sharp Tumblr theme. [install], [live demo]
 * Good code. I’ve read your theme’s code. I don’t like it; from completely
   useless Javascript to awful, copy-pasted CSS they’re not good.
 * Photosets that work. This is surprisingly difficult; by default, the
-  `{Photoset` directive doesn't work at all; on phones, it’ll load a photoset
+  `{Photoset}` directive doesn't work at all; on phones, it’ll load a photoset
   waaaay too wide, fucking up the whole theme. I had to reassemble the photoset
   manually in Javascript, which is a shame but there was no other way. It’s
   about 100 LOC which isn’t too bad, all things considered. The alternative is
