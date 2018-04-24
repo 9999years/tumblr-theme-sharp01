@@ -336,6 +336,10 @@ span.delimiter:first-child {
 	margin-right: 0.25em;
 }
 
+.inactive {
+	opacity: 80%;
+}
+
 .photo > img {
 	margin: 25px auto;
 	display: block;
@@ -1024,7 +1028,7 @@ window.onload = () => {
 			</a>
 			{/block:HasPermalink}
 			{block:ContentSource}
-				{text:Delimiter} by <a href="{SourceURL}">{SourceTitle}</a>
+			<span class="delimiter">{text:Delimiter}</span> by <a href="{SourceURL}">{SourceTitle}</a>
 			{/block:ContentSource}
 			{block:HasPermalink}
 			<span class="delimiter">{text:Delimiter}</span>
