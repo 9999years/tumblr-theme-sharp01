@@ -18,6 +18,9 @@ sharp01 is a simple, sharp Tumblr theme.
 * A good like icon! Appreciate it, I payed for it in blood.
 * **Mobile-accessible.** This is a big one! sharp01 looks *great* on mobile
   devices by default!
+* New-style reblogs! I’m pretty sure this is one of very very few themes to do
+  this. No I won’t add an option to disable it, old-style reblogs sucked and
+  were prone to breakage.
 
 ## customizability
 
@@ -57,14 +60,14 @@ but on a phone it’ll look more like this
   static! It shouldn’t *need* Javascript. But due to a horrible templating
   system, it’s needed.
 * Audio posts aren’t ideal. They’re *fine*, but not great.
-* Tumblr makes developing themes *really bad*. This is partially not Tumblr’s
-  fault — a lot of the difficulty comes from having to support so many different
-  types of content — but the lack of a good “base” theme and the lack of
-  resources such as good default photosets make creating a *good* theme *much*
-  harder than it should be. This thing is a huge timesink. It eats hours
-  whenever I touch it, so I try not to. Evidence: I just wasted about 3 hours
-  working on a like icon. Pull requests are welcome but I won’t
-  really put any effort in.
+
+Tumblr makes developing themes *really bad*. This is partially not Tumblr’s
+fault — a lot of the difficulty comes from having to support so many different
+types of content — but the lack of a good “base” theme and the lack of resources
+such as good default photosets make creating a *good* theme *much* harder than
+it should be. This thing is a huge timesink. It eats hours whenever I touch it,
+so I try not to. Evidence: I just wasted about 3 hours working on a like icon.
+Pull requests are welcome but I won’t really put any effort in.
 
 [becca.ooo]: https://becca.ooo/
 [Ex Libris]: http://www.exlibrisgroup.com/products/primo-library-discovery/

@@ -308,6 +308,22 @@ span.delimiter:first-child:before {
 	display: none;
 }
 
+.reblog-header {
+	border-top: 1px solid {color:Divider Color};
+	padding: 1em 0 0.5em 0;
+}
+
+.original-reblog > .reblog-header {
+	border-top: none;
+	padding: 0 0 0.5em 0;
+}
+
+.reblog-header img {
+	height: 1.5em;
+	vertical-align: middle;
+	margin-right: 0.25em;
+}
+
 .photo > img {
 	margin: 25px auto;
 	display: block;
@@ -581,6 +597,28 @@ span.delimiter:first-child:before {
 
 }
 
+@media (max-width: 600px) {
+	blockquote {
+	margin-left: 0.5em;
+	}
+
+	blockquote:after {
+	left: -0.5em;
+	}
+}
+
+@media (max-width: 550px) {
+	.post.video iframe {
+		height: initial!important;
+	}
+}
+
+@media (max-width: 400px) {
+	#header h1 {
+		font-size: 30px;
+	}
+}
+
 /* stripped down like/reblog buttons adapted from optica. sorry peter! ;-) */
 
 @font-face {
@@ -617,28 +655,6 @@ span.delimiter:first-child:before {
 
 .reblog_button:before {
 	content: ""; /* "" */
-}
-
-@media (max-width: 600px) {
-	blockquote {
-	margin-left: 0.5em;
-	}
-
-	blockquote:after {
-	left: -0.5em;
-	}
-}
-
-@media (max-width: 550px) {
-	.post.video iframe {
-		height: initial!important;
-	}
-}
-
-@media (max-width: 400px) {
-	#header h1 {
-		font-size: 30px;
-	}
 }
 
 {CustomCSS}
@@ -848,32 +864,22 @@ window.onload = () => {
 				{Asker}
 			</div>
 			<div class="answer">{Answer}</div>
-		</div>
 		{/block:Answer}
 		{block:Text}
 		<div class="post text">
 			{block:Title}
 			<h2><a href="{Permalink}">{Title}</a></h2>
-			{/block:Title}{Body}
-		</div>
+			{/block:Title}
 		{/block:Text}
 		{block:Photo}
 		<div class="post photo">
 			<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
-
-			{block:Caption}
-			<div class="caption">{Caption}</div>
-			{/block:Caption}
-		</div>
 		{/block:Photo}
 		{block:Panorama}
 		<div class="post panorama">
 			{LinkOpenTag}
 			<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
-			{LinkCloseTag}{block:Caption}
-			<div class="caption">{Caption}</div>
-			{/block:Caption}
-		</div>
+			{LinkCloseTag}
 		{/block:Panorama}
 		{block:Photoset}
 		<div class="post photoset">
@@ -890,10 +896,6 @@ window.onload = () => {
 			<script>
 				initPhotoset({JSPhotosetLayout}, "{PostId}");
 			</script>
-			{block:Caption}
-			<div class="caption">{Caption}</div>
-			{/block:Caption}
-		</div>
 		{/block:Photoset}
 		{block:Quote}
 		<div class="post quote">
@@ -904,7 +906,6 @@ window.onload = () => {
 			{block:Source}
 			<div class="source">— {Source}</div>
 			{/block:Source}
-		</div>
 		{/block:Quote}
 		{block:Link}
 		<div class="post link">
@@ -913,11 +914,6 @@ window.onload = () => {
 					<div class="title">{Name}</div>
 				</div>
 			</a>
-
-			{block:Description}
-			<div class="description">{Description}</div>
-			{/block:Description}
-		</div>
 		{/block:Link}
 		{block:Chat}
 		<div class="post chat">
@@ -934,15 +930,10 @@ window.onload = () => {
 				</div>
 				{/block:Lines}
 			</div>
-		</div>
 		{/block:Chat}
 		{block:Video}
 		<div class="post video">
 			{Video-700}
-			{block:Caption}
-			<div class="caption">{Caption}</div>
-			{/block:Caption}
-		</div>
 		{/block:Video}
 		{block:Audio}
 		<div class="post audio">
@@ -962,11 +953,47 @@ window.onload = () => {
 					{/block:Album}
 				</div>
 			</div>
-			{block:Caption}
-			<div class="caption">{Caption}</div>
-			{/block:Caption}
-		</div>
 		{/block:Audio}
+
+		{block:NotReblog}
+		<div class="caption">{Caption}</div>
+		{/block:NotReblog}
+
+		{block:RebloggedFrom}
+		{block:Reblogs}
+		<div class="reblog-list">
+			<div {block:isOriginalEntry}class="original-reblog"{/block:isOriginalEntry}>
+			<div class="reblog-header">
+
+				{block:IsActive}
+				<a{block:isNotOriginalEntry} class="sub-reblog"{/block:isNotOriginalEntry} href="{Permalink}">
+				<img src="{PortraitURL-64}">
+				</a>
+				{/block:IsActive}
+
+				{block:IsDeactivated}
+				<span class="inactive{block:isNotOriginalEntry} sub-reblog{/block:isNotOriginalEntry}">
+				<img src="{PortraitURL-64}">
+				</span>
+				{/block:IsDeactivated}
+
+				{block:IsActive}
+				<a href="{Permalink}">{Username}</a>
+				{/block:IsActive}
+
+				{block:IsDeactivated}
+				<span class="inactive">{Username}</span>
+				{/block:IsDeactivated}
+			</div>
+			<div class="reblog-content">
+				{Body}
+			</div>
+			</div>
+		</div>
+		{/block:Reblogs}
+		{/block:RebloggedFrom}
+
+		</div>
 		<div class="info">
 			<a href="{Permalink}" class="permalink">
 				{block:Date}
