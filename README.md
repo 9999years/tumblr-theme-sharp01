@@ -64,7 +64,7 @@ but on a phone it’ll look more like this
   makes authorship unclear. In my defense, I’m pretty sure this is Tumblr’s
   fault for rendering your blog URL and avatar above a quote post source, even
   if you’ve reblogged it from someone else.
-* Link posts don’t have thumbnails or descriptions. Nobody uses link posts,
+* Link posts don’t have thumbnails. Nobody uses link posts,
   though, so this isn’t much of an issue.
 
 # why is making a good tumblr theme so hard?
