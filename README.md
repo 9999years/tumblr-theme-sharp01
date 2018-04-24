@@ -61,7 +61,9 @@ but on a phone it’ll look more like this
   system, it’s needed.
 * Audio posts aren’t ideal. They’re *fine*, but not great.
 * Ditto with quote posts. Particularly reblogs / sources, the default formatting
-  makes authorship unclear.
+  makes authorship unclear. In my defense, I’m pretty sure this is Tumblr’s
+  fault for rendering your blog URL and avatar above a quote post source, even
+  if you’ve reblogged it from someone else.
 * Link posts don’t have thumbnails or descriptions. Nobody uses link posts,
   though, so this isn’t much of an issue.
 

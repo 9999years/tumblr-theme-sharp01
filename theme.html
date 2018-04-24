@@ -1,3 +1,5 @@
+<!doctype html>
+<html>
 <head>
 <meta charset="utf-8">
 <!-- sharp01 theme by becca.ooo
@@ -5,41 +7,34 @@ source:  github.com/9999years/tumblr-theme-sharp01
 license: AGPL v3 (gnu.org/licenses/agpl-3.0), which means you can copy, use,
 and modify this theme but you must agpl-license your modifications as well and
 distribute this license as well as the source code with your copy -->
-<title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}) {/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
-
-{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
 
 {block:Hidden}
-<meta name="if:Circular Avatar" content="1">
 <meta name="if:Rules between posts" content="1">
 <meta name="if:Post Borders" content="0">
 <meta name="if:Post Backgrounds" content="0">
 <meta name="if:Show Current Page Count" content="1">
 <meta name="if:Show Total Page Count" content="1">
-<meta name="if:Line Break Before Links" content="1">
+<meta name="if:Line Break Between Description and Links" content="1">
 <meta name="if:Show Avatar" content="1">
 <meta name="if:Show Search" content="0">
 <meta name="if:Show Ask Link" content="1">
 <meta name="if:Show Submit Link" content="1">
 <meta name="if:Show Archive Link" content="1">
-<meta name="if:Show Copyright Years" content="0">
+<meta name="if:Show Copyright Years" content="1">
 <meta name="if:Use Background Image" content="0">
-<meta name="image:Background" content="http://static.tumblr.com/j80nuha/j5Xolp0y9/scan397-copy.jpg">
-<meta name="text:Delimiter" content="╱">
+<meta name="image:Background" content="{HeaderImage}">
+<meta name="text:Delimiter" content="/">
 <meta name="text:Other Links" content="">
-<meta name="text:Newer Page Text" content="← Previous">
-<meta name="text:Older Page Text" content="Next →">
+<meta name="text:Newer Page Text" content="&#2190; Previous">
+<meta name="text:Older Page Text" content="Next &#x2192;">
 <meta name="color:Title Color" content="#000">
-<meta name="color:Description Color" content="#000">
 <meta name="color:Background gradient top" content="#fff">
 <meta name="color:Background gradient bottom" content="#fff">
 <meta name="color:Body Copy" content="#222">
-<meta name="color:Divider Color" content="#222">
-<meta name="color:Blockquote Color" content="#444">
 <meta name="color:Link" content="#226">
 <meta name="color:Link Hover" content="#b26">
 <meta name="color:Quote Post Color" content="#222">
-<meta name="color:Post Border Color" content="#fff">
+<meta name="color:Border Color" content="#fff">
 <meta name="color:Post Background Color" content="#fff">
 <meta name="color:Dark Copy" content="#000">
 <meta name="color:Light Copy" content="#444">
@@ -47,6 +42,9 @@ distribute this license as well as the source code with your copy -->
 <meta name="color:Link Post Foreground" content="#fff">
 {/block:Hidden}
 
+<title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}) {/block:SearchPage}{block:PermalinkPage}{block:PostSummary} &#x2014; {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="{Favicon}">
 <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
@@ -73,7 +71,7 @@ body {
 }
 
 html, body, input, ::placeholder {
-	font-family: "Segoe UI", -apple-system, "Geneva", "Helvetica", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Noto Sans", "Noto Serif", "Code2001", "Code2000", "HanaMinA", "HanaMinB", "BabelStone Han", "DejaVu Sans", "DejaVu Serif", "DejaVu Sans Mono", "UniDings", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-family: "Segoe UI", -apple-system, "Geneva", "Helvetica", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Noto Sans", "Noto Serif", "Code2001", "Code2000", "HanaMinA", "HanaMinB", "BabelStone Han", "DejaVu Sans", "DejaVu Sans Mono", "UniDings", "Helvetica Neue", "Helvetica", "Arial", sans-serif, "DejaVu Serif";
 	color: {color:Body Copy};
 	font-size: 18px;
 	line-height: 1.25;
@@ -92,7 +90,7 @@ ul > li {
 }
 
 ul > li:before {
-	content: '→';
+	content: '\2192';
 	position: absolute;
 	left: -1.5em;
 }
@@ -176,7 +174,7 @@ blockquote figure img {
 
 hr, .rule {
 	height: 0;
-	border: 0 solid {color:Divider Color};
+	border: 0 solid {color:Border Color};
 	{block:IfRulesbetweenposts}
 	border-bottom-width: 1px;
 	{/block:IfRulesbetweenposts}
@@ -206,14 +204,10 @@ hr, .rule {
 }
 
 #title {
-	color: {color:Title Color};
+	color: {TitleColor};
 	margin: 0;
 	margin-bottom: 15px;
 	line-height: 1.1em;
-}
-
-#description {
-	color: {color:Description Color};
 }
 
 blockquote {
@@ -223,7 +217,7 @@ blockquote {
 
 blockquote:after {
 	content: "";
-	border-left: 1px solid {color:Blockquote Color};
+	border-left: 1px solid {color:Border Color};
 	height: 100%;
 	position: absolute;
 	top: 0;
@@ -248,13 +242,15 @@ blockquote:after {
 #portrait {
 	position: absolute;
 	left: -153px;
-	{block:IfNotCircularAvatar}
+}
+
+#portrait.square {
 	top: 7px;
-	{/block:IfNotCircularAvatar}
-	{block:IfCircularAvatar}
+}
+
+#portrait.circle {
 	top: 5px;
 	border-radius: 100%;
-	{/block:IfCircularAvatar}
 }
 
 .footer {
@@ -292,7 +288,7 @@ span.delimiter:first-child {
 
 .post-outer, .header {
 	{block:IfPostBorders}
-	border: 1px solid {color:Post Border Color};
+	border: 1px solid {color:Border Color};
 	{block:IfNotPostBackgrounds}
 	padding: 25px;
 	{/block:IfNotPostBackgrounds}
@@ -320,7 +316,7 @@ span.delimiter:first-child {
 }
 
 .reblog-header {
-	border-top: 1px solid {color:Divider Color};
+	border-top: 1px solid {color:Border Color};
 	padding: 1em 0 0.5em 0;
 }
 
@@ -330,7 +326,7 @@ span.delimiter:first-child {
 	padding: 0 0 0.5em 0;
 }
 
-.reblog-header img {
+.reblog-header img, .asker img {
 	height: 1.5em;
 	vertical-align: middle;
 	margin-right: 0.25em;
@@ -394,7 +390,7 @@ span.delimiter:first-child {
 	max-width: 215px;
 	margin-left: 25px;
 	vertical-align: top;
-	border: 1px solid {color:Divider Color};
+	border: 1px solid {color:Border Color};
 }
 
 .tumblr_video_container {
@@ -433,7 +429,7 @@ span.delimiter:first-child {
 	font-style: italic;
 	position: relative;
 	line-height: 1.1em;
-	margin-bottom: 0.5em;
+	margin-bottom: 20px;
 }
 
 .quote > .content > .before > .inner,
@@ -476,10 +472,17 @@ span.delimiter:first-child {
 	font-weight: 400;
 }
 
-.quote > .source {
+.quote .source {
 	font-style: italic;
 	margin-left: 15%;
 	margin-top: 5px;
+	position: relative;
+}
+
+.quote .source:before {
+	content: '\2014';
+	position: absolute;
+	left: -1.5em;
 }
 
 .big-link {
@@ -613,15 +616,18 @@ span.delimiter:first-child {
 		margin-right: 1.4286%;
 	}
 
+	ol, ul {
+		padding-left: 2em;
+	}
 }
 
 @media (max-width: 600px) {
 	blockquote {
-	margin-left: 0.5em;
+		margin-left: 0.5em;
 	}
 
 	blockquote:after {
-	left: -0.5em;
+		left: -0.5em;
 	}
 }
 
@@ -664,15 +670,15 @@ span.delimiter:first-child {
 }
 
 .like_button:before {
-	content: "";
+	content: "\ea04";
 }
 
 .like_button.liked:before {
-	content: "";
+	content: "\ea05";
 }
 
 .reblog_button:before {
-	content: ""; /* "" */
+	content: "\ea07"; /* "\ea08" */
 }
 
 {CustomCSS}
@@ -806,21 +812,25 @@ window.onload = () => {
 <div id="contents">
 <div id="header">
 	<a href="/">
-		{block:IfShowAvatar}
-		<img src="{PortraitURL-128}" id="portrait">
-		{/block:IfShowAvatar}
+		{block:ShowAvatar}
+		<img src="{PortraitURL-128}" id="portrait" class="{AvatarShape}">
+		{/block:ShowAvatar}
+		{block:ShowTitle}
 		<h1 id="title">{Title}</h1>
+		{/block:ShowTitle}
 	</a>
 	<div id="description">
 		{block:IfShowSearch}
 		<form action="/search" method="get" id="search-form">
 		{/block:IfShowSearch}
+		{block:ShowDescription}
 		{block:Description}
 		<p>{Description}
 		{/block:Description}
+		{/block:ShowDescription}
 		<span class="links">
-		{block:IfLineBreakBeforeLinks}<p>{/block:IfLineBreakBeforeLinks}
-		{block:IfNotLineBreakBeforeLinks}{text:Delimiter}{/block:IfNotLineBreakBeforeLinks}
+		{block:IfLineBreakBetweenDescriptionandLinks}<p>{/block:IfLineBreakBetweenDescriptionandLinks}
+		{block:IfNotLineBreakBetweenDescriptionandLinks}<span class="delimiter">{text:Delimiter}</span>{/block:IfNotLineBreakBetweenDescriptionandLinks}
 		{block:IfShowAskLink}
 		{block:AskEnabled}
 		<a href="/ask">{AskLabel}</a>
@@ -872,10 +882,10 @@ window.onload = () => {
 {/block:SearchPage}
 
 <div id="posts">
-	{block:Posts}
+	{block:Posts inlineMediaWidth="700"}
 	<div class="post-outer">
+		<div class="post {PostType}">
 		{block:Answer}
-		<div class="post answer">
 			<div class="question">{Question}</div>
 			<div class="asker">
 				<img src="{AskerPortraitURL-16}" srcset="{AskerPortraitURL-40} 2x, {AskerPortraitURL-48} 3x, {AskerPortraitURL-64} 4x, {AskerPortraitURL-128} 8x">
@@ -884,23 +894,19 @@ window.onload = () => {
 			<div class="answer">{Answer}</div>
 		{/block:Answer}
 		{block:Text}
-		<div class="post text">
 			{block:Title}
 			<h2><a href="{Permalink}">{Title}</a></h2>
 			{/block:Title}
 		{/block:Text}
 		{block:Photo}
-		<div class="post photo">
 			<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
 		{/block:Photo}
 		{block:Panorama}
-		<div class="post panorama">
 			{LinkOpenTag}
 			<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
 			{LinkCloseTag}
 		{/block:Panorama}
 		{block:Photoset}
-		<div class="post photoset">
 			<div class="photoset-lightbox">
 				<img>
 			</div>
@@ -918,12 +924,11 @@ window.onload = () => {
 		{block:Quote}
 		<div class="post quote">
 			<div class="content {Length}">
-				<div class="before"><div class="inner">“</div></div>{Quote}
-				<div class="after"><div class="inner">”</div></div>
+				<div class="before"><div class="inner">&#x201c;</div></div>{Quote}
+				<div class="after"><div class="inner">&#x201d;</div></div>
 			</div>
 		{/block:Quote}
 		{block:Link}
-		<div class="post link">
 			<a href="{URL}">
 				<div class="big-link">
 					<div class="title"><span></span>{Host} <span class="delimiter">{text:Delimiter}</span>{Name}</div>
@@ -931,7 +936,6 @@ window.onload = () => {
 			</a>
 		{/block:Link}
 		{block:Chat}
-		<div class="post chat">
 			{block:Title}
 			<h2><a href="{Permalink}">{Title}</a></h2>
 			{/block:Title}
@@ -947,11 +951,9 @@ window.onload = () => {
 			</div>
 		{/block:Chat}
 		{block:Video}
-		<div class="post video">
 			{Video-700}
 		{/block:Video}
 		{block:Audio}
-		<div class="post audio">
 			<div class="audio-embed">
 				{AudioEmbed-400}
 			</div>
@@ -977,7 +979,7 @@ window.onload = () => {
 			{block:Link}{Description}{/block:Link}
 			{block:Ask}{Replies}{/block:Ask}
 			{block:Quote}{block:Source}
-			<div class="source">— {Source}</div>
+			<div class="source">{Source}</div>
 			{/block:Source}{/block:Quote}
 		</div>
 		{/block:NotReblog}
@@ -1018,25 +1020,23 @@ window.onload = () => {
 
 		</div>
 		<div class="info">
-			{block:HasPermalink}
 			<a href="{Permalink}" class="permalink">
 				{block:Date}
 				{12Hour}:{Minutes}{AmPm} {text:Delimiter} {ShortDayOfWeek} {DayOfMonth} {ShortMonth} {Year}
 				{/block:Date}
 				{block:NoteCount}
-				{text:Delimiter} {NoteCountWithLabel}
+				<span class="delimiter">{text:Delimiter}</span>{NoteCountWithLabel}
 				{/block:NoteCount}
 			</a>
-			{/block:HasPermalink}
 			{block:ContentSource}
 			<span class="delimiter">{text:Delimiter}</span> by <a href="{SourceURL}">{SourceTitle}</a>
 			{/block:ContentSource}
-			{block:HasPermalink}
+			{block:Date}
 			<span class="delimiter">{text:Delimiter}</span>
 			<div class="control reblog-control">{ReblogButton size="16" color="black"}</div>
 			<span class="delimiter">{text:Delimiter}</span>
 			<div class="control like-control link-like">{LikeButton size="16" color="black"}</div>
-			{/block:HasPermalink}
+			{/block:Date}
 			{block:HasTags}
 			<span class="delimiter">{text:Delimiter}</span>
 			{block:Tags}
@@ -1064,7 +1064,7 @@ window.onload = () => {
 	</div>
 	{block:IfShowCurrentPageCount}
 	<div class="center">
-		{block:IfShowTotalPageCount}<sup>{/block:IfShowTotalPageCount}{CurrentPage}{block:IfShowTotalPageCount}</sup>⁄<sub>{TotalPages}</sub>{/block:IfShowTotalPageCount}
+		{block:IfShowTotalPageCount}<sup>{/block:IfShowTotalPageCount}{CurrentPage}{block:IfShowTotalPageCount}</sup>&#x2044;<sub>{TotalPages}</sub>{/block:IfShowTotalPageCount}
 	</div>
 	{/block:IfShowCurrentPageCount}
 	<div class="next">
