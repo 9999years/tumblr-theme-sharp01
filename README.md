@@ -60,6 +60,10 @@ but on a phone it’ll look more like this
   static! It shouldn’t *need* Javascript. But due to a horrible templating
   system, it’s needed.
 * Audio posts aren’t ideal. They’re *fine*, but not great.
+* Ditto with quote posts. Particularly reblogs / sources, the default formatting
+  makes authorship unclear.
+* Link posts don’t have thumbnails or descriptions. Nobody uses link posts,
+  though, so this isn’t much of an issue.
 
 # why is making a good tumblr theme so hard?
 
