@@ -517,6 +517,10 @@ span.delimiter:first-child {
 	top: 1px;
 }
 
+.tags a {
+	margin-right: 0.1em;
+}
+
 .tag {
 	padding: 0 3px 2px 2px;
 	border: 1px solid {color:Link};
@@ -1034,16 +1038,18 @@ window.onload = () => {
 			<span class="delimiter">{text:Delimiter}</span> by <a href="{SourceURL}">{SourceTitle}</a>
 			{/block:ContentSource}
 			{block:Date}
-			<span class="delimiter">{text:Delimiter}</span>
+			<span class="delimiter"> {text:Delimiter} </span>
 			<div class="control reblog-control">{ReblogButton size="16" color="black"}</div>
-			<span class="delimiter">{text:Delimiter}</span>
+			<span class="delimiter"> {text:Delimiter} </span>
 			<div class="control like-control link-like">{LikeButton size="16" color="black"}</div>
 			{/block:Date}
 			{block:HasTags}
 			<span class="delimiter">{text:Delimiter}</span>
+			<span class="tags">
 			{block:Tags}
 			<a href="{TagUrl}"><span class="tag">#{Tag}</span></a>
 			{/block:Tags}
+			</span>
 			{/block:HasTags}
 		</div>
 		{block:PostNotes}
