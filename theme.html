@@ -129,10 +129,6 @@ input {
 	max-width: 100%;
 }
 
-form#search-form {
-	display: inline;
-}
-
 form#search-form input::placeholder {
 	opacity: 0.75;
 	font-family: "optica-icons", "Blank";
@@ -838,6 +834,9 @@ window.onload = () => {
 		{/block:ShowTitle}
 	</a>
 	<div id="description">
+		{block:IfShowSearch}
+		<form action="/search" method="get" id="search-form">
+		{/block:IfShowSearch}
 		{block:ShowDescription}
 		{block:Description}
 		<p>{Description}
@@ -866,9 +865,11 @@ window.onload = () => {
 		<span class="delimiter">{text:Delimiter}</span>
 		<form action="/search" method="get" id="search-form">
 		<input type="text" name="q" placeholder="&#xea0a;">
-		</form>
 		{/block:IfShowSearch}
 		</span>
+		{block:IfShowSearch}
+		</form>
+		{/block:IfShowSearch}
 	</div>
 </div>
 
