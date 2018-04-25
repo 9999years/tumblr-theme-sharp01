@@ -130,6 +130,11 @@ input {
 	max-width: 100%;
 }
 
+input#search-form::placeholder {
+	opacity: 0.75;
+	font-family: "optica-icons", "Blank";
+}
+
 a, .link-like {
 	color: {color:Link};
 	text-decoration: none;
@@ -853,7 +858,7 @@ window.onload = () => {
 		<span class="delimiter">{text:Delimiter}</span> {text:Other Links}
 		{/block:IfOtherLinks}
 		{block:IfShowSearch}
-		<span class="delimiter">{text:Delimiter}</span> <input type="text" name="q" placeholder="search">
+		<span class="delimiter">{text:Delimiter}</span> <input type="text" name="q" placeholder="&#xea0a;">
 		{/block:IfShowSearch}
 		</span>
 		{block:IfShowSearch}</form>{/block:IfShowSearch}
@@ -1031,7 +1036,7 @@ window.onload = () => {
 				{12Hour}:{Minutes}{AmPm} {text:Delimiter} {ShortDayOfWeek} {DayOfMonth} {ShortMonth} {Year}
 				{/block:Date}
 				{block:NoteCount}
-				<span class="delimiter">{text:Delimiter}</span>{NoteCountWithLabel}
+				{text:Delimiter}{NoteCountWithLabel}
 				{/block:NoteCount}
 			</a>
 			{block:ContentSource}
