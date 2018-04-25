@@ -844,7 +844,7 @@ window.onload = () => {
 		{/block:ShowDescription}
 		<span class="links">
 		{block:IfLineBreakBetweenDescriptionandLinks}<p>{/block:IfLineBreakBetweenDescriptionandLinks}
-		{block:IfNotLineBreakBetweenDescriptionandLinks}<span class="delimiter">{text:Delimiter}</span>{/block:IfNotLineBreakBetweenDescriptionandLinks}
+		{block:IfNotLineBreakBetweenDescriptionandLinks}<span class="delimiter"> {text:Delimiter} </span>{/block:IfNotLineBreakBetweenDescriptionandLinks}
 		{block:IfShowAskLink}
 		{block:AskEnabled}
 		<a href="/ask">{AskLabel}</a>
@@ -852,17 +852,17 @@ window.onload = () => {
 		{/block:IfShowAskLink}
 		{block:IfShowSubmitLink}
 		{block:SubmissionsEnabled}
-		<span class="delimiter">{text:Delimiter}</span> <a href="/submit">{SubmitLabel}</a>
+		<span class="delimiter"> {text:Delimiter} </span> <a href="/submit">{SubmitLabel}</a>
 		{/block:SubmissionsEnabled}
 		{/block:IfShowSubmitLink}
 		{block:IfShowArchiveLink}
-		<span class="delimiter">{text:Delimiter}</span> <a href="/archive">{lang:Archive}</a>
+		<span class="delimiter"> {text:Delimiter} </span> <a href="/archive">{lang:Archive}</a>
 		{/block:IfShowArchiveLink}
 		{block:IfOtherLinks}
-		<span class="delimiter">{text:Delimiter}</span> {text:Other Links}
+		<span class="delimiter"> {text:Delimiter} </span> {text:Other Links}
 		{/block:IfOtherLinks}
 		{block:IfShowSearch}
-		<span class="delimiter">{text:Delimiter}</span>
+		<span class="delimiter"> {text:Delimiter} </span>
 		<form action="/search" method="get" id="search-form">
 		<input type="text" name="q" placeholder="&#xea0a;">
 		{/block:IfShowSearch}
