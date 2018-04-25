@@ -25,9 +25,8 @@ distribute this license as well as the source code with your copy -->
 <meta name="image:Background" content="{HeaderImage}">
 <meta name="text:Delimiter" content="/">
 <meta name="text:Other Links" content="">
-<meta name="text:Newer Page Text" content="&#2190; Previous">
+<meta name="text:Newer Page Text" content="&#x2190; Previous">
 <meta name="text:Older Page Text" content="Next &#x2192;">
-<meta name="color:Title Color" content="#000">
 <meta name="color:Background gradient top" content="#fff">
 <meta name="color:Background gradient bottom" content="#fff">
 <meta name="color:Body Copy" content="#222">
@@ -130,7 +129,7 @@ input {
 	max-width: 100%;
 }
 
-input#search-form::placeholder {
+#search-form input::placeholder {
 	opacity: 0.75;
 	font-family: "optica-icons", "Blank";
 }
@@ -177,7 +176,7 @@ hr {
 	{/block:IfRulesbetweenposts}
 	{block:IfNotRulesbetweenposts}
 	{block:IfNotPostBorders}
-	margin: 50px 0;
+	margin: 25px 0;
 	{/block:IfNotPostBorders}
 	{block:IfPostBorders}
 	margin: 10px 0;
@@ -835,9 +834,6 @@ window.onload = () => {
 		{/block:ShowTitle}
 	</a>
 	<div id="description">
-		{block:IfShowSearch}
-		<form action="/search" method="get" id="search-form">
-		{/block:IfShowSearch}
 		{block:ShowDescription}
 		{block:Description}
 		<p>{Description}
@@ -863,10 +859,12 @@ window.onload = () => {
 		<span class="delimiter">{text:Delimiter}</span> {text:Other Links}
 		{/block:IfOtherLinks}
 		{block:IfShowSearch}
-		<span class="delimiter">{text:Delimiter}</span> <input type="text" name="q" placeholder="&#xea0a;">
+		<span class="delimiter">{text:Delimiter}</span>
+		<form action="/search" method="get" id="search-form">
+		<input type="text" name="q" placeholder="&#xea0a;">
+		</form>
 		{/block:IfShowSearch}
 		</span>
-		{block:IfShowSearch}</form>{/block:IfShowSearch}
 	</div>
 </div>
 
