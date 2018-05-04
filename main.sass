@@ -1,0 +1,466 @@
+html
+  margin: 0
+  padding: 0
+  word-wrap: break-word
+
+body
+  margin: 0
+  padding: 0
+  word-wrap: break-word
+  position: relative
+  z-index: -100
+
+html, body, input, ::placeholder
+  font-family: "Segoe UI", -apple-system, "Geneva", "Helvetica", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Noto Sans", "Noto Serif", "Code2001", "Code2000", "HanaMinA", "HanaMinB", "BabelStone Han", "DejaVu Sans", "DejaVu Sans Mono", "UniDings", "Helvetica Neue", "Helvetica", "Arial", sans-serif, "DejaVu Serif"
+  font-size: 18px
+  line-height: 1.25
+
+ol
+  padding: 0
+
+ul
+  padding: 0
+  list-style: none
+
+  > li
+    position: relative
+
+    &:before
+      content: '\2192'
+      position: absolute
+      left: -1.5em
+
+ol > li
+  padding-left: 0.25em
+
+h1, h2, h3, h4, h5, h6
+  margin: 0.25em 0 0.25em 0
+
+h1
+  font-size: 64px
+
+h2
+  font-size: 48px
+
+.caption h2
+  font-size: 36px
+
+p
+  margin: 0 0 1em 0
+
+img, iframe
+  max-width: 100%
+
+input
+  background: transparent
+  padding: 2px 10px
+  max-width: 100%
+
+form#search-form input::placeholder
+  opacity: 0.75
+  font-family: "optica-icons", "Blank"
+
+a, .link-like
+  text-decoration: none
+
+figure
+  margin: 15px 0
+
+blockquote figure img
+  display: block
+
+.tag-title
+  text-align: center
+
+hr
+  height: 0
+
+.post hr
+  width: 50%
+  margin: 2em auto
+
+#lightbox-outer
+  position: fixed
+  top: 0
+  z-index: 100
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.5)
+  display: none
+
+#lightbox-img
+  max-height: 90vh
+  max-width: 90vw
+  margin: auto
+  display: block
+  margin-top: 5vh
+
+#title
+  margin: 0
+  margin-bottom: 15px
+  line-height: 1.1em
+
+blockquote
+  margin: 0 0 0 1em
+  position: relative
+
+  &:after
+    content: ""
+    height: 100%
+    position: absolute
+    top: 0
+    left: -1em
+
+#container
+  margin: 50px 25px
+  margin-bottom: 100px
+  z-index: 0
+
+#contents
+  margin: auto
+  max-width: 700px
+
+#header
+  position: relative
+
+#portrait
+  position: absolute
+  left: -153px
+
+  &.square
+    top: 7px
+
+  &.circle
+    top: 5px
+    border-radius: 100%
+
+.footer
+  position: relative
+  height: 1em
+
+  .next
+    position: absolute
+    right: 0
+
+  .center
+    text-align: center
+    height: 0
+
+  .previous
+    position: absolute
+    left: 0
+
+.copyright
+  text-align: center
+  margin-top: 2em
+
+span.delimiter:first-child
+  display: none
+
+.links
+  line-height: 2
+
+.notes
+  ol
+    margin: 0
+    padding: 0
+    list-style: none
+
+  img.avatar
+    position: relative
+    top: 2px
+    margin-right: 1em
+
+.hide
+  display: none
+
+.reblog-header
+  padding: 1em 0 0.5em 0
+
+.reblog-list > div:first-child > .reblog-header, .original-reblog > .reblog-header
+  border-top: none
+  padding: 0 0 0.5em 0
+
+.reblog-header img, .asker img
+  height: 1.5em
+  vertical-align: middle
+  margin-right: 0.25em
+
+.inactive
+  opacity: 80%
+
+.photo > img
+  margin: 25px auto
+  display: block
+
+.photoset-row
+  display: flex
+  overflow: hidden
+  margin-bottom: 10px
+  position: relative
+
+  img
+    width: 100%
+
+  a
+    position: relative
+    margin: auto
+    margin-right: 10px
+
+    &:last-child
+      margin-right: 0
+
+.row-1 a
+  width: 100%
+
+.row-2 a
+  width: 345px
+
+.row-3 a
+  width: 227px
+
+  &:last-child
+    width: 226px
+
+.row
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+
+.audio-info
+  margin-left: 25px
+  vertical-align: top
+
+.tumblr_video_container
+  width: 100% !important
+  height: initial !important
+
+.post iframe
+  margin-bottom: 15px
+
+.audio-info > .inner
+  margin: 25px
+
+.html_photoset, iframe.photoset
+  max-width: 100%
+
+.chat .label
+  font-weight: bold
+
+.info
+  margin-top: 15px
+  font-size: 16px
+
+.quote
+  >
+    .content
+      font-weight: 900
+      font-style: italic
+      position: relative
+      line-height: 1.1em
+      margin-bottom: 20px
+
+      >
+        .before > .inner
+          font-family: "Times", "Times New Roman", "Baskerville", "Didot", serif
+          font-size: 200%
+          top: 0.05em
+          vertical-align: top
+
+        .after
+          > .inner
+            font-family: "Times", "Times New Roman", "Baskerville", "Didot", serif
+            font-size: 200%
+            top: 0.05em
+            vertical-align: top
+
+          position: absolute
+          display: inline-block
+          z-index: -1
+
+        .before
+          position: absolute
+          display: inline-block
+          z-index: -1
+
+          > .inner
+            position: absolute
+            left: -0.55em
+
+        .after > .inner
+          display: inline-block
+          position: relative
+          left: -0.05em
+          top: 0.15em
+
+    .short
+      font-size: 64px
+
+    .medium
+      font-size: 45px
+      font-weight: 600
+
+    .long
+      font-size: 28px
+      font-weight: 400
+
+  .source
+    font-style: italic
+    margin-left: 15%
+    margin-top: 5px
+    position: relative
+
+    &:before
+      content: '\2014'
+      position: absolute
+      left: -1.5em
+
+.big-link
+  padding: 25px
+  margin-bottom: 25px
+
+  .title
+    font-size: 150%
+
+.post .big-link hr
+  width: 100%
+
+.question
+  padding: 15px
+  margin-bottom: 10px
+
+.asker
+  margin-bottom: 15px
+  text-align: right
+  position: relative
+
+  img
+    position: relative
+    top: 1px
+
+.tags a
+  margin-right: 0.1em
+
+.tag
+  padding: 0 3px 2px 2px
+  line-height: 200%
+
+.tmblr-attribution
+  font-size: 16px
+  font-style: italic
+
+@media (max-width: 1020px)
+  #portrait
+    left: initial
+    right: 0
+    top: -5px
+    width: 20%
+
+  #header h1
+    width: 75%
+
+  #description
+    max-width: 550px
+
+@media (max-width: 880px)
+  img
+    height: initial
+
+  .quote >
+    .short
+      font-size: 50px
+
+    .medium
+      font-size: 40px
+
+    .long
+      font-size: 24px
+
+    .content
+      text-indent: 0.6em
+
+      >
+        .before > .inner
+          left: -0.85em
+
+        .after > .inner
+          position: absolute
+          left: -0.35em
+
+@media (max-width: 750px)
+  #container
+    margin: 15px 15px
+    margin-bottom: 100px
+
+  #header h1
+    width: 100%
+    font-size: 48px
+
+  #portrait
+    position: initial
+    width: initial
+    margin-bottom: 15px
+
+  .row-2 a
+    width: 49.2857%
+
+  .row-3 a
+    width: 31.8571%
+
+    &:last-child
+      width: 31.8571%
+
+  .photoset-row a
+    margin-right: 1.4286%
+
+  ol, ul
+    padding-left: 2em
+
+@media (max-width: 600px)
+  blockquote
+    margin-left: 0.5em
+
+    &:after
+      left: -0.5em
+
+@media (max-width: 550px)
+  .post.video iframe
+    height: initial !important
+
+@media (max-width: 400px)
+  #header h1
+    font-size: 30px
+
+/* stripped down like/reblog buttons adapted from optica. sorry peter! ;-)
+
+@font-face
+  font-family: "optica-icons"
+  src: url(http://static.tumblr.com/wkjmpnm/qaro1ddjb/optica-icons.eot)
+
+@font-face
+  font-family: "optica-icons"
+  src: url(data:application/x-font-woff;charset=utf-8;base64,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) format("woff")
+
+.control
+  display: inline-block
+  position: relative
+  font-family: "optica-icons", "Blank"
+
+.like_button iframe, .reblog_button svg
+  display: block
+  position: absolute
+  top: 0
+  left: 0
+  opacity: 0
+
+.like_button
+  &:before
+    content: "\ea04"
+
+  &.liked:before
+    content: "\ea05"
+
+.reblog_button:before
+  content: "\ea07"
+
+  /* "\ea08"
