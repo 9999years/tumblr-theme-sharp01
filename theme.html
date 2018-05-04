@@ -65,7 +65,7 @@ html, body, input, ::placeholder {
 	color: {color:Body Copy};
 }
 
-input {
+input, .question {
 	border: 1px solid {color:Body Copy};
 }
 
@@ -77,16 +77,12 @@ a:hover, .link-like:hover {
 	color: {color:Link Hover};
 }
 
-a.permalink {
+a.permalink, a h1 {
 	color: {color:Body Copy};
 }
 
 a.permalink:hover {
 	color: {color:Dark Copy};
-}
-
-a h1 {
-	color: {color:Body Copy};
 }
 
 hr {
@@ -142,21 +138,16 @@ blockquote:after {
 	color: {color:Quote Post Color};
 }
 
-.big-link {
-	background-color: {color:Link Post Background};
+.big-link, .big-link a {
 	color: {color:Link Post Foreground};
 }
 
-.big-link a {
-	color: {color:Link Post Foreground};
+.big-link {
+	background-color: {color:Link Post Background};
 }
 
 .post .big-link hr {
 	border-color: {color:Link Post Foreground};
-}
-
-.question {
-	border: 1px solid {color:Body Copy};
 }
 
 .tag {
