@@ -274,16 +274,13 @@ span.delimiter:first-child {
 	width: 226px;
 }
 
-.audio-embed, .audio-info {
-	display: inline-block;
-}
-
-.audio-embed {
-	margin-bottom: 15px;
+.row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 }
 
 .audio-info {
-	max-width: 215px;
 	margin-left: 25px;
 	vertical-align: top;
 }
@@ -467,13 +464,6 @@ span.delimiter:first-child {
 }
 
 @media (max-width: 750px) {
-	.audio-info {
-		max-width: 100%;
-		width: 100%;
-		margin-left: 0;
-		margin-bottom: 25px;
-	}
-
 	#container {
 		margin: 15px 15px;
 		margin-bottom: 100px;

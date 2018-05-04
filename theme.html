@@ -47,7 +47,7 @@ distribute this license as well as the source code with your copy -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="{Favicon}">
 <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
-<link rel="stylesheet" type="text/css" href="main.css"></style>
+<link rel="stylesheet" type="text/css" href="https://static.tumblr.com/j80nuha/Mwip884k9/main.css"></style>
 <style>
 html, body {
 	background-color: {color:Background gradient top};
@@ -169,7 +169,7 @@ blockquote:after {
 
 {CustomCSS}
 </style>
-<script src="photosets.js"></script>
+<script defer async src="https://static.tumblr.com/j80nuha/HYep884r2/photosets.js"></script>
 </head>
 <body>
 <div id="lightbox-outer">
@@ -329,20 +329,22 @@ blockquote:after {
 			{Video-700}
 		{/block:Video}
 		{block:Audio}
-			<div class="audio-embed">
-				{AudioEmbed-400}
-			</div>
-			<div class="audio-info">
-				<div class="inner">
-					{block:TrackName}
-					{TrackName}
-					{/block:TrackName}
-					{block:Artist}
-					{text:Delimiter} {Artist}
-					{/block:Artist}
-					{block:Album}
-					({Album})
-					{/block:Album}
+			<div class="row">
+				<div class="audio-embed">
+					{AudioEmbed-400}
+				</div>
+				<div class="audio-info">
+					<div class="inner">
+						{block:TrackName}
+						{TrackName}
+						{/block:TrackName}
+						{block:Artist}
+						{text:Delimiter} {Artist}
+						{/block:Artist}
+						{block:Album}
+						({Album})
+						{/block:Album}
+					</div>
 				</div>
 			</div>
 		{/block:Audio}

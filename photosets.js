@@ -10,7 +10,7 @@ var images = [], heights = []
 
 function centerRow(i, j) {
 	//center each image vertically in its row
-	images[i][j].foreach(i -> i.parentElement.style.top =
+	images[i][j].foreach(i => i.parentElement.style.top =
 		(i.height / i.parentElement.parentElement.clientHeight - 1)
 		* -50 + "%")
 }
