@@ -1,3 +1,9 @@
+$font-size: 18px
+$margin-sm: 10px
+$margin-lg: 25px
+$width: 700px
+$portrait-width: 128px
+
 html
   margin: 0
   padding: 0
@@ -12,7 +18,7 @@ body
 
 html, body, input, ::placeholder
   font-family: "Segoe UI", -apple-system, "Geneva", "Helvetica", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Noto Sans", "Noto Serif", "Code2001", "Code2000", "HanaMinA", "HanaMinB", "BabelStone Han", "DejaVu Sans", "DejaVu Sans Mono", "UniDings", "Helvetica Neue", "Helvetica", "Arial", sans-serif, "DejaVu Serif"
-  font-size: 18px
+  font-size: $font-size
   line-height: 1.25
 
 ol
@@ -26,7 +32,7 @@ ul
     position: relative
 
     &:before
-      content: '\2192'
+      content: "\2192"
       position: absolute
       left: -1.5em
 
@@ -37,13 +43,13 @@ h1, h2, h3, h4, h5, h6
   margin: 0.25em 0 0.25em 0
 
 h1
-  font-size: 64px
+  font-size: 4 * $font-size
 
 h2
-  font-size: 48px
+  font-size: 3 * $font-size
 
 .caption h2
-  font-size: 36px
+  font-size: 2 * $font-size
 
 p
   margin: 0 0 1em 0
@@ -53,7 +59,7 @@ img, iframe
 
 input
   background: transparent
-  padding: 2px 10px
+  padding: 2px $margin-sm
   max-width: 100%
 
 form#search-form input::placeholder
@@ -63,8 +69,9 @@ form#search-form input::placeholder
 a, .link-like
   text-decoration: none
 
+// gifs inserted in text posts
 figure
-  margin: 15px 0
+  margin: $margin-sm 0
 
 blockquote figure img
   display: block
@@ -97,7 +104,7 @@ hr
 
 #title
   margin: 0
-  margin-bottom: 15px
+  margin-bottom: $margin-sm
   line-height: 1.1em
 
 blockquote
@@ -112,20 +119,20 @@ blockquote
     left: -1em
 
 #container
-  margin: 50px 25px
-  margin-bottom: 100px
+  margin: 2 * $margin-lg $margin-lg
+  margin-bottom: 4 * $margin-lg
   z-index: 0
 
 #contents
   margin: auto
-  max-width: 700px
+  max-width: $width
 
 #header
   position: relative
 
 #portrait
   position: absolute
-  left: -153px
+  left: -($portrait-width + $margin-lg)
 
   &.square
     top: 7px
@@ -190,13 +197,13 @@ span.delimiter:first-child
   opacity: 80%
 
 .photo > img
-  margin: 25px auto
+  margin: $margin-lg auto
   display: block
 
 .photoset-row
   display: flex
   overflow: hidden
-  margin-bottom: 10px
+  margin-bottom: $margin-sm
   position: relative
 
   img
@@ -205,22 +212,10 @@ span.delimiter:first-child
   a
     position: relative
     margin: auto
-    margin-right: 10px
+    margin-right: $margin-sm
 
     &:last-child
       margin-right: 0
-
-.row-1 a
-  width: 100%
-
-.row-2 a
-  width: 345px
-
-.row-3 a
-  width: 227px
-
-  &:last-child
-    width: 226px
 
 .row
   display: flex
@@ -228,18 +223,18 @@ span.delimiter:first-child
   align-items: flex-start
 
 .audio-info
-  margin-left: 25px
+  margin-left: $margin-lg
   vertical-align: top
 
 .tumblr_video_container
   width: 100% !important
   height: initial !important
 
-.post iframe
-  margin-bottom: 15px
+.post iframe // videos & soundclouds and such
+  margin-bottom: $margin-sm
 
 .audio-info > .inner
-  margin: 25px
+  margin: $margin-lg
 
 .html_photoset, iframe.photoset
   max-width: 100%
@@ -248,8 +243,12 @@ span.delimiter:first-child
   font-weight: bold
 
 .info
-  margin-top: 15px
-  font-size: 16px
+  margin-top: $margin-sm
+  font-size: 8 / 9 * $font-size
+
+.tmblr-attribution
+  font-size: 8 / 9 * $font-size
+  font-style: italic
 
 .quote
   >
@@ -258,7 +257,7 @@ span.delimiter:first-child
       font-style: italic
       position: relative
       line-height: 1.1em
-      margin-bottom: 20px
+      margin-bottom: 2 * $margin-sm
 
       >
         .before > .inner
@@ -294,20 +293,20 @@ span.delimiter:first-child
           top: 0.15em
 
     .short
-      font-size: 64px
+      font-size: 3.5 * $font-size
 
     .medium
-      font-size: 45px
+      font-size: 2 * $font-size
       font-weight: 600
 
     .long
-      font-size: 28px
+      font-size: 1.5 * $font-size
       font-weight: 400
 
   .source
     font-style: italic
     margin-left: 15%
-    margin-top: 5px
+    margin-top: $margin-sm / 2
     position: relative
 
     &:before
@@ -316,8 +315,8 @@ span.delimiter:first-child
       left: -1.5em
 
 .big-link
-  padding: 25px
-  margin-bottom: 25px
+  padding: $margin-lg
+  margin-bottom: $margin-lg
 
   .title
     font-size: 150%
@@ -326,11 +325,11 @@ span.delimiter:first-child
   width: 100%
 
 .question
-  padding: 15px
-  margin-bottom: 10px
+  padding: $margin-sm
+  margin-bottom: $margin-sm
 
 .asker
-  margin-bottom: 15px
+  margin-bottom: $margin-sm
   text-align: right
   position: relative
 
@@ -344,10 +343,6 @@ span.delimiter:first-child
 .tag
   padding: 0 3px 2px 2px
   line-height: 200%
-
-.tmblr-attribution
-  font-size: 16px
-  font-style: italic
 
 @media (max-width: 1020px)
   #portrait
@@ -461,6 +456,4 @@ span.delimiter:first-child
     content: "\ea05"
 
 .reblog_button:before
-  content: "\ea07"
-
-  /* "\ea08"
+  content: "\ea07" // "\ea08"
