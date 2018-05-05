@@ -45,6 +45,38 @@ but on a phone it’ll look more like this
 
 ![mobile theme preview](https://i.imgur.com/JhMCvPI.png)
 
+# color guide
+
+There’s a bunch of colors, but what *are* they all?
+
+**Title color** — this is inferred from your blog settings, i.e. the stuff you
+can edit in the app.
+
+**Body copy** — all the “regular” text; excludes links and post info (times,
+notes, tags, etc).
+
+**Light copy** — post info (times, notes, tags, etc.); should be a little bit
+less “dramatic” than the body copy color. But you can use it as an accent if
+you want; I’m not your boss.
+
+**Dark copy** — the color of quotes and post info when hovered.
+
+**Link** — links and the background of the big link “blocks” in link posts;
+[example](https://sharp01-theme.tumblr.com/post/173274016012/9999yearstumblr-theme-sharp01).
+
+**Link hover** — color of links when you mouse over them.
+
+**Border color** — color of the horizontal rules between posts or the borders
+around posts if you have that enabled. Also the borders around [audio
+post](https://sharp01-theme.tumblr.com/post/173587244612/4lung) info boxes and
+between
+[reblogs](https://sharp01-theme.tumblr.com/post/173265767647/hawkebo-sevey6-murdoc-murdoc-redacted).
+
+**Post background color** — with post backgrounds enabled, you can choose to
+give posts a different background color than the rest of the blog, so you can
+go wild with the background gradient without worrying about the text being
+unreadable.
+
 # known issues
 
 * Default colors are a bit boring. Sorry!
