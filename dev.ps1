@@ -7,7 +7,7 @@ Param(
 	[Switch]$Build
 )
 
-$sassStyle = If($PSCmdlet.ParameterSetName -eq "Server") {
+$sassStyle = If($PSCmdlet.ParameterSetName -eq "Watch") {
 	"watch"
 } Else {
 	"update"

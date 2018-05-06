@@ -1,4 +1,6 @@
 let $ = id => document.getElementById(id)
+let scale =  window.devicePixelRatio
+let pp = el => el.parentElement.parentElement
 
 //photoset code
 //i swear this is less js than tumblr's impl.
@@ -10,9 +12,20 @@ var images = [], heights = []
 
 function centerRow(i, j) {
 	//center each image vertically in its row
-	images[i][j].foreach(i => i.parentElement.style.top =
-		(i.height / i.parentElement.parentElement.clientHeight - 1)
+	images[i][j].forEach(i => i.parentElement.style.top =
+		(i.height / pp(i).clientHeight - 1)
 		* -50 + "%")
+}
+
+function resizeRow(i, j) {
+	console.log("heights[" + i + "][" + j + "] = " + heights[i][j])
+	console.log("images[i][j].length (>= 0) = " + images[i][j].length)
+
+	if(heights[i][j].includes(NaN) === false && images[i][j].length > 0) {
+		console.log("pp(tar) = " + pp(tar))
+		pp(tar).style.height = Math.min.apply(null, heights[i][j]) + "px"
+		centerRow(i, j)
+	}
 }
 
 function updatePhotoset(i) {
@@ -25,13 +38,10 @@ function updatePhotoset(i) {
 				break
 			}
 		}
-		if((heights[i][j].includes(NaN) === false) && images[i][j].length >= 0) {
-			//if every image is loaded, resize the row
-			images[i][j][0].parentElement.parentElement.style.height =
-				Math.min.apply(null, heights[i][j])
-		}
+		resizeRow(i, j)
 		centerRow(i, j)
 	}
+	console.log("--")
 }
 
 function updatePhotosets() {
@@ -44,6 +54,7 @@ function updatePhotosets() {
 	for(var i = 0; i < rows.length; i++) {
 		rows[i].style.marginBottom = margin + "px"
 	}
+	console.log("--------------")
 }
 
 function updateLightbox(e) {
@@ -52,23 +63,22 @@ function updateLightbox(e) {
 	$("lightbox-img").style.marginTop =
 		(window.innerHeight
 			- Math.min(+e.target.attributes.nativeheight.value,
-				   window.innerHeight * 0.9)) / 2
+				   window.innerHeight * 0.9))
 	$("lightbox-outer").style.display = "block"
 	return false
 }
 
 function initPhotoset(layout, id) {
 	var loadHandler = e => {
+		tar = e.target
+		i = tar.dataset.i
+		j = tar.dataset.rownum
 		//fill in heights
-		heights[i][e.target.rownum][e.target.slot] = e.target.height
-		//resize j if all in j loaded
-		if(heights[i][e.target.rownum].includes(NaN) === false) {
-			e.target.parentElement.parentElement.style.height =
-				Math.min.apply(null, heights[i][e.target.rownum]) + "px"
-			centerRow(i, e.target.rownum)
-		}
+		heights[i][j][tar.dataset.slot] = tar.height
+		resizeRow(i, j)
 	}
-	var row, container, i = images.length
+	var row, container
+	let i = images.length
 	//create new keys for this photoset
 	images[i]  = []
 	heights[i] = []
@@ -91,12 +101,14 @@ function initPhotoset(layout, id) {
 			}
 			heights[i][j].push(NaN)
 			images[i][j].push(row.appendChild(container.children[n]))
-			images[i][j][k] = images[i][j][k].children[0]
+			//images[i][j][k] = images[i][j][k].children[0]
+			var img = images[i][j][k].children[0]
 			//assign some attribs for future ref
-			images[i][j][k].rownum = j
-			images[i][j][k].slot = k
-			images[i][j][k].onload = loadHandler
-			images[i][j][k].onclick = updateLightbox
+			img.dataset.i = i
+			img.dataset.rownum = j
+			img.dataset.slot = k
+			img.onload = loadHandler
+			img.onclick = updateLightbox
 			//element is popped, reset n and increment k
 			n = 0
 			k++
