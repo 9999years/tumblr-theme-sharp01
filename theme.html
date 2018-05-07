@@ -296,7 +296,7 @@ blockquote:after {
 		{block:Link}
 			<a href="{URL}">
 				<div class="big-link">
-					<div class="title"><span></span>{Host} <span class="delimiter">{text:Delimiter}</span> {Name}</div>
+					<div class="title"><span></span>{Host} <span class="delimiter"> {text:Delimiter} </span> {Name}</div>
 					{block:Excerpt}<hr>{Excerpt}{/block:Excerpt}
 				</div>
 			</a>
@@ -393,11 +393,11 @@ blockquote:after {
 				{12Hour}:{Minutes}{AmPm} {text:Delimiter} {ShortDayOfWeek} {DayOfMonth} {ShortMonth} {Year}
 				{/block:Date}
 				{block:NoteCount}
-				{text:Delimiter}{NoteCountWithLabel}
+				{text:Delimiter} {NoteCountWithLabel}
 				{/block:NoteCount}
 			</a>
 			{block:ContentSource}
-			<span class="delimiter">{text:Delimiter}</span> by <a href="{SourceURL}">{SourceTitle}</a>
+			<span class="delimiter"> {text:Delimiter} </span> by <a href="{SourceURL}">{SourceTitle}</a>
 			{/block:ContentSource}
 			{block:Date}
 			<span class="delimiter"> {text:Delimiter} </span>
