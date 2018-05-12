@@ -210,6 +210,13 @@ blockquote:after {
 		<form action="/search" method="get" id="search-form">
 		<input type="text" name="q" placeholder="&#xea0a;">
 		{/block:IfShowSearch}
+		{block:HasPages}
+		<!-- pages support is RIGHT HERE Tumblr!! you could detect the presence / absence of this block automatically! -->
+		{block:Pages}
+		<span class="delimiter"> {text:Delimiter} </span>
+		<a href="{URL}">{Label}</a>
+		{/block:Pages}
+		{/block:HasPages}
 		</span>
 		{block:IfShowSearch}
 		</form>
